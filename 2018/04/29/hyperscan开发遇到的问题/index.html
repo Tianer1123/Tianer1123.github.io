@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Tianer&#39;s Blog">
 <meta property="og:description" content="本文介使用hyperscan开发时遇到的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-29T05:16:59.811Z">
+<meta property="og:updated_time" content="2018-04-29T05:22:13.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hyperscan开发的时候遇到的问题">
 <meta name="twitter:description" content="本文介使用hyperscan开发时遇到的问题。">
@@ -306,7 +306,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:16:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:22:13+08:00">
                 2018-04-29
               </time>
             
@@ -410,7 +410,7 @@
 <p>应该使用<code>rte_malloc()</code>和<code>rte_free()</code>为hyperscan分配内存。如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">hs_rte_malloc</span><span class="params">(<span class="keyword">size_t</span> *size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rte_malloc(<span class="string">"hs_malloc"</span>, size, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hs_rte_free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    rte_free(ptr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hs_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* 设置自定义hs动态分配内存和释放内存的函数 */</span></span><br><span class="line">    hs_set_allocator(hs_rte_malloc, hs_rte_free);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="2"> dpdk多线程使用hyperscan，只有一个scratch时报段错误。</h2>
 
-<p>参考<a href="https://github.com/Tianer1123/Tutorials/blob/master/hyperscan/dpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database.md" target="_blank" rel="noopener">dpdk多线程访问hs的database</a>。</p>
+<p>参考<a href="https://tianer1123.github.io/2018/04/29/dpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database/">dpdk多线程访问hs的database</a>。</p>
 <h2 id="3"> c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？</h2>
 
 <p>将<code>pattern</code>中的16进制做转换，例如:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 0x00 ==&gt; \x00 */</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (pattern[i] == <span class="number">0x00</span>) &#123;</span><br><span class="line">    expression[j++] = <span class="string">'\\'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\x'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\0'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\0'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
