@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,install," />
+  <meta name="keywords" content="hyperscan,编译,安装," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="hexo,install">
+<meta name="description" content="1. 需要的环境hyperscan官方开发文档 1.1 硬件环境Intel X86平台32位或者64位都可以运行。另外hyperscan在编译时可以添加一些新的特性，如果系统支持：  Intel Streaming SIMD Extensions 4.2 (SSE4.2) POPCNT指令 BMI, BMI2指令 Intel AVX2指令">
+<meta name="keywords" content="hyperscan,编译,安装">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://tianer1123.github.io/2018/04/29/hello-world/index.html">
+<meta property="og:title" content="编译hyperscan">
+<meta property="og:url" content="https://tianer1123.github.io/2018/04/29/hyperscan编译/index.html">
 <meta property="og:site_name" content="Tianer&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="1. 需要的环境hyperscan官方开发文档 1.1 硬件环境Intel X86平台32位或者64位都可以运行。另外hyperscan在编译时可以添加一些新的特性，如果系统支持：  Intel Streaming SIMD Extensions 4.2 (SSE4.2) POPCNT指令 BMI, BMI2指令 Intel AVX2指令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-29T04:58:35.535Z">
+<meta property="og:updated_time" content="2018-04-29T05:10:34.170Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="编译hyperscan">
+<meta name="twitter:description" content="1. 需要的环境hyperscan官方开发文档 1.1 硬件环境Intel X86平台32位或者64位都可以运行。另外hyperscan在编译时可以添加一些新的特性，如果系统支持：  Intel Streaming SIMD Extensions 4.2 (SSE4.2) POPCNT指令 BMI, BMI2指令 Intel AVX2指令">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://tianer1123.github.io/2018/04/29/hello-world/"/>
+  <link rel="canonical" href="https://tianer1123.github.io/2018/04/29/hyperscan编译/"/>
 
 
 
 
 
-  <title>Hello World | Tianer's Blog</title>
+  <title>编译hyperscan | Tianer's Blog</title>
   
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/04/29/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/04/29/hyperscan编译/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tianer">
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">编译hyperscan</h1>
         
 
         <div class="post-meta">
@@ -306,7 +306,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T12:58:35+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:10:34+08:00">
                 2018-04-29
               </time>
             
@@ -329,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HelloWorld/" itemprop="url" rel="index">
-                    <span itemprop="name">HelloWorld</span>
+                  <a href="/categories/hyperscan/" itemprop="url" rel="index">
+                    <span itemprop="name">hyperscan</span>
                   </a>
                 </span>
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  78 字
+                  577 字
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  3 分钟
                 </span>
               
             </div>
@@ -397,16 +397,166 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <h1 id="1-需要的环境"><a href="#1-需要的环境" class="headerlink" title="1. 需要的环境"></a>1. 需要的环境</h1><p><a href="http://intel.github.io/hyperscan/dev-reference/" target="_blank" rel="noopener">hyperscan官方开发文档</a></p>
+<h2 id="1-1-硬件环境"><a href="#1-1-硬件环境" class="headerlink" title="1.1 硬件环境"></a>1.1 硬件环境</h2><p><code>Intel X86</code>平台32位或者64位都可以运行。另外hyperscan在编译时可以添加一些新的特性，如果系统支持：</p>
+<ul>
+<li>Intel Streaming SIMD Extensions 4.2 (SSE4.2)</li>
+<li>POPCNT指令</li>
+<li>BMI, BMI2指令</li>
+<li>Intel AVX2指令</li>
+</ul>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_C_FLAGS=&quot;-march=corei7&quot; \</span><br><span class="line">  -DCMAKE_CXX_FLAGS=&quot;-march=corei7&quot; &lt;hyperscan-source-path&gt;</span><br></pre></td></tr></table></figure></p>
+<p>对于不同的<code>cpu</code>特性，<code>-march</code>表格如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Variant</th>
+<th style="text-align:left">cpu支持的特性flags</th>
+<th style="text-align:left">gcc arch flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Core 2</td>
+<td style="text-align:left">SSSE3</td>
+<td style="text-align:left">-march=core2</td>
+</tr>
+<tr>
+<td style="text-align:left">Core i7</td>
+<td style="text-align:left">SSE4_2 and POPCNT</td>
+<td style="text-align:left">-march=corei7</td>
+</tr>
+<tr>
+<td style="text-align:left">AVX 2</td>
+<td style="text-align:left">AVX2</td>
+<td style="text-align:left">-march=core-avx2</td>
+</tr>
+<tr>
+<td style="text-align:left">AVX 512</td>
+<td style="text-align:left">AVX512BW (见下面注释1.1)</td>
+<td style="text-align:left">-march=skylake-avx512</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注释1.1：AVX 512是至强处理器引入的指令集,并不是所有的cpu都支持，编译时默认是关闭的。如果需要打开，编译时执行如下代码<br><code>cmake  - DBUILD_AVX512 = on  &lt;...&gt;</code></p>
+</blockquote>
+<h2 id="1-2-软件环境"><a href="#1-2-软件环境" class="headerlink" title="1.2 软件环境"></a>1.2 软件环境</h2><h3 id="GCC-C-编译器"><a href="#GCC-C-编译器" class="headerlink" title="GCC/C++编译器"></a>GCC/C++编译器</h3><ul>
+<li>GCC, v4.8.1或更高版本</li>
+<li>Clang, v3.4或更高版本(包含libstdc++或libc++)</li>
+<li>Intel C++ Compiler v15或更高版本</li>
+</ul>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><ul>
+<li>Linux<ul>
+<li>Ubuntu 14.04 LTS or newer</li>
+<li>RedHat/CentOS 7 or newer</li>
+</ul>
+</li>
+<li>FreeBSD<ul>
+<li>10.0 or newer</li>
+</ul>
+</li>
+<li>Mac OS X<ul>
+<li>10.8 or newer, using XCode/Clang</li>
+</ul>
+</li>
+</ul>
+<p>其他系统可能也可以运行hyperscan，但性能稳定性无法担保。</p>
+<h3 id="其他一些依赖"><a href="#其他一些依赖" class="headerlink" title="其他一些依赖"></a>其他一些依赖</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">依赖的软件</th>
+<th style="text-align:left">版本</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CMake</td>
+<td style="text-align:left">&gt;=2.8.11</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Ragel</td>
+<td style="text-align:left">6.9</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Python</td>
+<td style="text-align:left">2.7</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Boost</td>
+<td style="text-align:left">&gt;=1.57</td>
+<td style="text-align:left">只需要Boost的头文件</td>
+</tr>
+<tr>
+<td style="text-align:left">Pcap</td>
+<td style="text-align:left">&gt;=0.8</td>
+<td style="text-align:left">可选项:只例子程序需要</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Boost头文件"><a href="#Boost头文件" class="headerlink" title="Boost头文件"></a>Boost头文件</h4><p>boost<strong>不用</strong>编译和安装，只需要把头文件链接到hyperscan源码中即可，以Boost-1.59.0正式版为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s boost_1_59_0/boost &lt;hyperscan-source-path&gt;/include/boost</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-3-编译和安装"><a href="#1-3-编译和安装" class="headerlink" title="1.3 编译和安装"></a>1.3 编译和安装</h2><h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><ol>
+<li><code>cd &lt;hyperscan-source-path&gt;</code></li>
+<li><code>mkdir hs_build;cd hs_build</code></li>
+<li><code>cmake -D&lt;variable name&gt;=&lt;value&gt; &lt;hyperscan-source-path&gt;</code></li>
+<li><code>cmake --build .</code></li>
+</ol>
+<h3 id="D参数列表"><a href="#D参数列表" class="headerlink" title="-D参数列表"></a>-D参数列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">变量名</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CMAKE_C_COMPILER</td>
+<td style="text-align:left">使用c编译器，默认是/usr/bin/cc</td>
+</tr>
+<tr>
+<td style="text-align:left">CMAKE_CXX_COMPILER</td>
+<td style="text-align:left">使用c++编译器，默认是/usr/bin/c++</td>
+</tr>
+<tr>
+<td style="text-align:left">CMAKE_INSTALL_PREFIX</td>
+<td style="text-align:left">安装目录</td>
+</tr>
+<tr>
+<td style="text-align:left">CMAKE_BUILD_TYPE</td>
+<td style="text-align:left">Debug,Release,RelWithDebInfo,MinSizeRel,默认是RelWithDebInfo</td>
+</tr>
+<tr>
+<td style="text-align:left">BUILD_SHARED_LIBS</td>
+<td style="text-align:left">默认是静态库，设置这个参数编译为动态库</td>
+</tr>
+<tr>
+<td style="text-align:left">BUILD_STATIC_AND_SHARED</td>
+<td style="text-align:left">同时生成静态库和动态库，默认关闭</td>
+</tr>
+<tr>
+<td style="text-align:left">BOOST_ROOT</td>
+<td style="text-align:left">Boost源代码树的位置</td>
+</tr>
+<tr>
+<td style="text-align:left">DEBUG_OUTPUT</td>
+<td style="text-align:left">打开啰嗦模式输出，默认关闭</td>
+</tr>
+<tr>
+<td style="text-align:left">FAT_RUNTIME</td>
+<td style="text-align:left">在linux环境默认打开，其他环境没有</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p><em>源码是hyperscan-4.7.0</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd hyperscan-4.7.0</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=on ../hyperscan-4.7.0</span><br><span class="line">cmake --build .</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>-DCMAKE_BUILD_TYPE=Release:编译为release版本，默认是RelWithDebInfo</li>
+<li>-DBUILD_SHARED_LIBS=on:生成动态库，默认生成静态库</li>
+</ul>
 
       
     </div>
@@ -435,9 +585,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+            <a href="/tags/hyperscan/" rel="tag"><i class="fa fa-tag"></i> hyperscan</a>
           
-            <a href="/tags/install/" rel="tag"><i class="fa fa-tag"></i> install</a>
+            <a href="/tags/编译/" rel="tag"><i class="fa fa-tag"></i> 编译</a>
+          
+            <a href="/tags/安装/" rel="tag"><i class="fa fa-tag"></i> 安装</a>
           
         </div>
       
@@ -450,14 +602,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/29/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/29/hyperscan编译/" rel="prev" title="编译hyperscan">
-                编译hyperscan <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/29/dpdk多线程访问hs的database/" rel="prev" title="dpdk多线程访问hs的database">
+                dpdk多线程访问hs的database <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -601,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-需要的环境"><span class="nav-number">1.</span> <span class="nav-text">1. 需要的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-硬件环境"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 硬件环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-软件环境"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 软件环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC-C-编译器"><span class="nav-number">1.2.1.</span> <span class="nav-text">GCC/C++编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他一些依赖"><span class="nav-number">1.2.3.</span> <span class="nav-text">其他一些依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Boost头文件"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Boost头文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-编译和安装"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 编译和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">1.3.1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D参数列表"><span class="nav-number">1.3.2.</span> <span class="nav-text">-D参数列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个例子"><span class="nav-number">1.3.3.</span> <span class="nav-text">一个例子</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
