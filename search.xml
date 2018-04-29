@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[hyperscan开发的时候遇到的问题]]></title>
+    <url>%2F2018%2F04%2F29%2Fhyperscan%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[本文介使用hyperscan开发时遇到的问题。 问题列表 dpdk多线程使用hyperscan模式查询，访问全局的db时报错。 dpdk多线程使用hyperscan，只有一个scratch时报段错误。 c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？ dpdk多线程使用hyperscan模式查询，访问全局的db时报错。 应该使用rte_malloc()和rte_free()为hyperscan分配内存。如下：12345678910111213141516void *hs_rte_malloc(size_t *size)&#123; return rte_malloc("hs_malloc", size, 0);&#125;void hs_rte_free(void *ptr)&#123; rte_free(ptr);&#125;void hs_init() &#123; ... /* 设置自定义hs动态分配内存和释放内存的函数 */ hs_set_allocator(hs_rte_malloc, hs_rte_free); ...&#125; dpdk多线程使用hyperscan，只有一个scratch时报段错误。 参考dpdk多线程访问hs的database。 c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？ 将pattern中的16进制做转换，例如:12345678/* 0x00 ==&gt; \x00 */int i = 0, j = 0;if (pattern[i] == 0x00) &#123; expression[j++] = '\\'; expression[j++] = '\x'; expression[j++] = '\0'; expression[j++] = '\0';&#125;]]></content>
+      <categories>
+        <category>hyperscan</category>
+      </categories>
+      <tags>
+        <tag>hyperscan</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[dpdk多线程访问hs的database]]></title>
+    <url>%2F2018%2F04%2F29%2Fdpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database%2F</url>
+    <content type="text"><![CDATA[1. hs_scratch_tHyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。 2. 只有1个核但有多个数据库只有1个核，但有多个数据库时 只需要一个临时区域，使用hs_alloc_scratch()来分配。 为每个数据库调用hs_alloc_scratch()来确保分配的临时空间足够大。 3. 有一个主进程，多个备进程的情况在有多个核同时工作的场景中，扫描全局的hs数据库。 使用hs_clone_scratch()为每个线程创建一个临时控件。 下面的代码是一个例子：12345678910111213141516171819202122232425262728293031323334hs_error_t err;/* 为数据库db创建临时空间，如果有多个数据库则需要为scratch_prototype调用多次hs_alloc_scratch, * 例如有db1和db2: * ... * err = hs_alloc_scratch(db1, &amp;scratch_prototyep); * ... * err = hs_alloc_scratch(db2, &amp;scratch_prototyep); * ... **/hs_scratch_t *scratch_prototype = NULL;err = hs_alloc_scratch(db, &amp;scratch_prototype);if (err != HS_SUCCESS) &#123; printf("hs_alloc_scratch failed!"); exit(1);&#125;/* 每个线程都应该有一个自己的scratch临时空间 */hs_scratch_t *scratch_thread1 = NULL;hs_scratch_t *scratch_thread2 = NULL;/* 为每个线程克隆一个临时空间 */err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread1);if (err != HS_SUCCESS) &#123; printf("hs_clone_scratch failed!"); exit(1);&#125;err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread2);if (err != HS_SUCCESS) &#123; printf("hs_clone_scratch failed!"); exit(1);&#125;/* 将alloc申请的临时空间释放,因为别的线程已不再需要这个临时空间 */hs_free_scratch(scratch_prototype); 该例子中的两个线程此时可以使用自己的临时空间来访问database了。 在没有为每个线程申请临时空间而共用1个临时空间，线程不安全，会发生段错误。]]></content>
+      <categories>
+        <category>hyperscan</category>
+      </categories>
+      <tags>
+        <tag>hyperscan</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[编译hyperscan]]></title>
+    <url>%2F2018%2F04%2F29%2Fhyperscan%E7%BC%96%E8%AF%91%2F</url>
+    <content type="text"><![CDATA[1. 需要的环境hyperscan官方开发文档 1.1 硬件环境Intel X86平台32位或者64位都可以运行。另外hyperscan在编译时可以添加一些新的特性，如果系统支持： Intel Streaming SIMD Extensions 4.2 (SSE4.2) POPCNT指令 BMI, BMI2指令 Intel AVX2指令 例如:12cmake -DCMAKE_C_FLAGS=&quot;-march=corei7&quot; \ -DCMAKE_CXX_FLAGS=&quot;-march=corei7&quot; &lt;hyperscan-source-path&gt; 对于不同的cpu特性，-march表格如下： Variant cpu支持的特性flags gcc arch flag Core 2 SSSE3 -march=core2 Core i7 SSE4_2 and POPCNT -march=corei7 AVX 2 AVX2 -march=core-avx2 AVX 512 AVX512BW (见下面注释1.1) -march=skylake-avx512 注释1.1：AVX 512是至强处理器引入的指令集,并不是所有的cpu都支持，编译时默认是关闭的。如果需要打开，编译时执行如下代码cmake - DBUILD_AVX512 = on &lt;...&gt; 1.2 软件环境GCC/C++编译器 GCC, v4.8.1或更高版本 Clang, v3.4或更高版本(包含libstdc++或libc++) Intel C++ Compiler v15或更高版本 操作系统 Linux Ubuntu 14.04 LTS or newer RedHat/CentOS 7 or newer FreeBSD 10.0 or newer Mac OS X 10.8 or newer, using XCode/Clang 其他系统可能也可以运行hyperscan，但性能稳定性无法担保。 其他一些依赖 依赖的软件 版本 备注 CMake &gt;=2.8.11 Ragel 6.9 Python 2.7 Boost &gt;=1.57 只需要Boost的头文件 Pcap &gt;=0.8 可选项:只例子程序需要 Boost头文件boost不用编译和安装，只需要把头文件链接到hyperscan源码中即可，以Boost-1.59.0正式版为例：1ln -s boost_1_59_0/boost &lt;hyperscan-source-path&gt;/include/boost 1.3 编译和安装编译 cd &lt;hyperscan-source-path&gt; mkdir hs_build;cd hs_build cmake -D&lt;variable name&gt;=&lt;value&gt; &lt;hyperscan-source-path&gt; cmake --build . -D参数列表 变量名 描述 CMAKE_C_COMPILER 使用c编译器，默认是/usr/bin/cc CMAKE_CXX_COMPILER 使用c++编译器，默认是/usr/bin/c++ CMAKE_INSTALL_PREFIX 安装目录 CMAKE_BUILD_TYPE Debug,Release,RelWithDebInfo,MinSizeRel,默认是RelWithDebInfo BUILD_SHARED_LIBS 默认是静态库，设置这个参数编译为动态库 BUILD_STATIC_AND_SHARED 同时生成静态库和动态库，默认关闭 BOOST_ROOT Boost源代码树的位置 DEBUG_OUTPUT 打开啰嗦模式输出，默认关闭 FAT_RUNTIME 在linux环境默认打开，其他环境没有 一个例子源码是hyperscan-4.7.012345cd hyperscan-4.7.0mkdir buildcd buildcmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=on ../hyperscan-4.7.0cmake --build . -DCMAKE_BUILD_TYPE=Release:编译为release版本，默认是RelWithDebInfo -DBUILD_SHARED_LIBS=on:生成动态库，默认生成静态库]]></content>
+      <categories>
+        <category>hyperscan</category>
+      </categories>
+      <tags>
+        <tag>hyperscan</tag>
+        <tag>编译</tag>
+        <tag>安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F04%2F29%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>install</tag>
+      </tags>
+  </entry>
+</search>
