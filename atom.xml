@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tianer1123.github.io/"/>
-  <updated>2018-04-29T05:23:34.477Z</updated>
+  <updated>2018-05-01T01:32:23.560Z</updated>
   <id>https://tianer1123.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dpdk多线程访问hs的database</title>
+    <link href="https://tianer1123.github.io/2018/05/01/dpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database/"/>
+    <id>https://tianer1123.github.io/2018/05/01/dpdk多线程访问hs的database/</id>
+    <published>2018-05-01T01:32:23.560Z</published>
+    <updated>2018-05-01T01:32:23.560Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-hs-scratch-t"><a href="#1-hs-scratch-t" class="headerlink" title="1. hs_scratch_t"></a>1. hs_scratch_t</h2><p>Hyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。</p><a id="more"></a><h2 id="2-只有1个核但有多个数据库"><a href="#2-只有1个核但有多个数据库" class="headerlink" title="2. 只有1个核但有多个数据库"></a>2. 只有1个核但有多个数据库</h2><p>只有1个核，但有多个数据库时</p><ul><li>只需要一个临时区域，使用<code>hs_alloc_scratch()</code>来分配。</li><li>为每个数据库调用<code>hs_alloc_scratch()</code>来确保分配的临时空间足够大。</li></ul><h2 id="3-有一个主进程，多个备进程的情况"><a href="#3-有一个主进程，多个备进程的情况" class="headerlink" title="3. 有一个主进程，多个备进程的情况"></a>3. 有一个主进程，多个备进程的情况</h2><p>在有多个核同时工作的场景中，扫描全局的<code>hs</code>数据库。</p><ul><li>使用<code>hs_clone_scratch()</code>为每个线程创建一个临时控件。</li></ul><p>下面的代码是一个例子：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">hs_error_t</span> err;</span><br><span class="line"><span class="comment">/* 为数据库db创建临时空间，如果有多个数据库则需要为scratch_prototype调用多次hs_alloc_scratch,</span></span><br><span class="line"><span class="comment"> *  例如有db1和db2:</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> *   err = hs_alloc_scratch(db1, &amp;scratch_prototyep);</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> *   err = hs_alloc_scratch(db2, &amp;scratch_prototyep);</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_prototype = <span class="literal">NULL</span>;</span><br><span class="line">err = hs_alloc_scratch(db, &amp;scratch_prototype);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_alloc_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 每个线程都应该有一个自己的scratch临时空间 */</span></span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_thread1 = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_thread2 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 为每个线程克隆一个临时空间 */</span></span><br><span class="line">err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread1);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_clone_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread2);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_clone_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将alloc申请的临时空间释放,因为别的线程已不再需要这个临时空间 */</span></span><br><span class="line">hs_free_scratch(scratch_prototype);</span><br></pre></td></tr></table></figure></p><p>该例子中的两个线程此时可以使用自己的临时空间来访问database了。<br><div class="note info"><p>在没有为每个线程申请临时空间而共用1个临时空间，线程不安全，会发生段错误。</p></div></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-hs-scratch-t&quot;&gt;&lt;a href=&quot;#1-hs-scratch-t&quot; class=&quot;headerlink&quot; title=&quot;1. hs_scratch_t&quot;&gt;&lt;/a&gt;1. hs_scratch_t&lt;/h2&gt;&lt;p&gt;Hyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hyperscan" scheme="https://tianer1123.github.io/categories/hyperscan/"/>
+    
+    
+      <category term="hyperscan" scheme="https://tianer1123.github.io/tags/hyperscan/"/>
+    
+  </entry>
   
   <entry>
     <title>hyperscan开发的时候遇到的问题</title>
@@ -28,28 +50,6 @@
     <summary type="html">
     
       &lt;p&gt;本文介使用hyperscan开发时遇到的问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hyperscan" scheme="https://tianer1123.github.io/categories/hyperscan/"/>
-    
-    
-      <category term="hyperscan" scheme="https://tianer1123.github.io/tags/hyperscan/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dpdk多线程访问hs的database</title>
-    <link href="https://tianer1123.github.io/2018/04/29/dpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database/"/>
-    <id>https://tianer1123.github.io/2018/04/29/dpdk多线程访问hs的database/</id>
-    <published>2018-04-29T05:14:03.171Z</published>
-    <updated>2018-04-29T05:14:03.171Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-hs-scratch-t"><a href="#1-hs-scratch-t" class="headerlink" title="1. hs_scratch_t"></a>1. hs_scratch_t</h2><p>Hyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。</p><a id="more"></a><h2 id="2-只有1个核但有多个数据库"><a href="#2-只有1个核但有多个数据库" class="headerlink" title="2. 只有1个核但有多个数据库"></a>2. 只有1个核但有多个数据库</h2><p>只有1个核，但有多个数据库时</p><ul><li>只需要一个临时区域，使用<code>hs_alloc_scratch()</code>来分配。</li><li>为每个数据库调用<code>hs_alloc_scratch()</code>来确保分配的临时空间足够大。</li></ul><h2 id="3-有一个主进程，多个备进程的情况"><a href="#3-有一个主进程，多个备进程的情况" class="headerlink" title="3. 有一个主进程，多个备进程的情况"></a>3. 有一个主进程，多个备进程的情况</h2><p>在有多个核同时工作的场景中，扫描全局的<code>hs</code>数据库。</p><ul><li>使用<code>hs_clone_scratch()</code>为每个线程创建一个临时控件。</li></ul><p>下面的代码是一个例子：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">hs_error_t</span> err;</span><br><span class="line"><span class="comment">/* 为数据库db创建临时空间，如果有多个数据库则需要为scratch_prototype调用多次hs_alloc_scratch,</span></span><br><span class="line"><span class="comment"> *  例如有db1和db2:</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> *   err = hs_alloc_scratch(db1, &amp;scratch_prototyep);</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> *   err = hs_alloc_scratch(db2, &amp;scratch_prototyep);</span></span><br><span class="line"><span class="comment"> *   ...</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_prototype = <span class="literal">NULL</span>;</span><br><span class="line">err = hs_alloc_scratch(db, &amp;scratch_prototype);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_alloc_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 每个线程都应该有一个自己的scratch临时空间 */</span></span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_thread1 = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">hs_scratch_t</span> *scratch_thread2 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 为每个线程克隆一个临时空间 */</span></span><br><span class="line">err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread1);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_clone_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread2);</span><br><span class="line"><span class="keyword">if</span> (err != HS_SUCCESS) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hs_clone_scratch failed!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将alloc申请的临时空间释放,因为别的线程已不再需要这个临时空间 */</span></span><br><span class="line">hs_free_scratch(scratch_prototype);</span><br></pre></td></tr></table></figure></p><p>该例子中的两个线程此时可以使用自己的临时空间来访问database了。</p><pre><code>在没有为每个线程申请临时空间而共用1个临时空间，线程不安全，会发生段错误。</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1-hs-scratch-t&quot;&gt;&lt;a href=&quot;#1-hs-scratch-t&quot; class=&quot;headerlink&quot; title=&quot;1. hs_scratch_t&quot;&gt;&lt;/a&gt;1. hs_scratch_t&lt;/h2&gt;&lt;p&gt;Hyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。&lt;/p&gt;
     
     </summary>
     
