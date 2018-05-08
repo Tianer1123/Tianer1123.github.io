@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[scrapy]]></title>
+    <url>%2F2018%2F05%2F08%2Fscrapy%2F</url>
+    <content type="text"><![CDATA[scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。 安装建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行pip3 install scrapy，就可以安装。在pycharm中默认会将scrapy的依赖安装上。 创建项目1scrapy startproject myproject [project_dir] 编写爬虫代码以下是scrapy的一个例子(代码写到myproject-&gt;spiders目录下)： 12345678910111213141516171819202122232425262728293031323334353637383940import scrapyclass QuotesSpider(scrapy.Spider): name = "quotes" # def start_requests(self): # urls = [ # 'http://quotes.toscrape.com/page/1/', # 'http://quotes.toscrape.com/page/2/', # ] # for url in urls: # yield scrapy.Request(url=url, callback=self.parse) # 不重写start_request()，会调用默认的start_request函数。 start_urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] def parse(self, response): for quote in response.css('div.quote'): yield &#123; 'text': quote.css('span.text::text').extract_first(), 'author': quote.css('small.author::text').extract_first(), 'tags': quote.css('div.tags a.tag::text').extract(), &#125; # next_page = response.css('li.next a::attr(href)').extract_first() # if next_page is not null: # next_page = response.urljion(next_page) # 得到绝对路径 # yield scrapy.Request(url=next_page, callback=self.parse()) # 使用response.flow代替ruljion（可以使用相对路径） # for href in response.css('li.next a::attr(href)'): # yield response.follow(href, callback=self.parse) for a in response.css('li.next a::attr(href)'): yield response.follow(a, callback=self.parse) 运行项目1scrapy crawl myproject -o myproject.json -o参数是将分析出来的数据输出到文件。 参考:Scrapy官网:https://docs.scrapy.org/en/latest/index.html]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>scrapy</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[函数与极限]]></title>
     <url>%2F2018%2F05%2F08%2F%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90%2F</url>
     <content type="text"><![CDATA[函数极限的定义定义一设函数 $f(x)$ 在点 $x_0$ 的某一去心邻域内有定义.如果存在常数 $A$ 对于任意给定的正数 $\varepsilon$ (不论它多么小)，总存在一个正数 $\delta$ ,使得当 $x$ 满足不等式 $0&lt;|x - x_0|&lt;\delta$ ,对应的函数 $f(x)$ 都满足不等式:$$ |f(x) - A| &lt; \varepsilon $$ 那么常数 $A$ 就叫做函数 $f(x)$ 当 $x \to x_0$ 时的极限,记作$$\lim_{x \to x_0}f(x) = A \text { 或 } f(x) \to A \quad (x \to x_0)$$ 定义一的简单描述$\lim_{x \to x_0}f(x) = A \Leftrightarrow \forall \varepsilon &gt; 0$ , $\exists \delta &gt; 0$ , 当 $0 &lt; |x - x_0| &lt; \delta$ 时,有 $|f(x) - A| &lt; \varepsilon$. 极限存在准则两个极限存在准则:夹逼准则和单调有界准则。 准则一 (数列的夹逼准则)设有三个数列: $\lbrace x_n \rbrace \quad \lbrace y_n \rbrace \quad \lbrace z_n \rbrace$若他们满足条件:$(1) \quad y_n \leq x_n \leq z_n \quad (n=1,2,3…)$$(2) \quad \lim_{n \to \infty}y_n = A \quad \lim_{n \to \infty}z_n = A$则$\lim_{n \to \infty}x_n = A$ 该准则可以推广到函数的极限 准则二 (数列的单调有界准则)单调有界数列必有极限 柯西极限存在准则 数列 ${x_n}$ 收敛的充分必要条件是:对于任意给定的正数$\varepsilon$,存在正整数$N$,使得当$m&gt;N,n&gt;N$有:$$|x_n - x_m| &lt; \varepsilon$$ 两个重要极限$$\lim_{x \to 0} \frac {sinx} x = 1 \quad \quad (1)$$ $$\lim_{x \to \infty}(1 + \frac 1 x)^x = {\rm e} \quad \quad (2)$$]]></content>
