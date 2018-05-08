@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[函数与极限]]></title>
+    <url>%2F2018%2F05%2F08%2F%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90%2F</url>
+    <content type="text"><![CDATA[函数极限的定义定义一设函数 $f(x)$ 在点 $x_0$ 的某一去心邻域内有定义.如果存在常数 $A$ 对于任意给定的正数 $\varepsilon$ (不论它多么小)，总存在一个正数 $\delta$ ,使得当 $x$ 满足不等式 $0&lt;|x - x_0|&lt;\delta$ ,对应的函数 $f(x)$ 都满足不等式:$$ |f(x) - A| &lt; \varepsilon $$ 那么常数 $A$ 就叫做函数 $f(x)$ 当 $x \to x_0$ 时的极限,记作$$\lim_{x \to x_0}f(x) = A \text { 或 } f(x) \to A \quad (x \to x_0)$$ 定义一的简单描述$\lim_{x \to x_0}f(x) = A \Leftrightarrow \forall \varepsilon &gt; 0$ , $\exists \delta &gt; 0$ , 当 $0 &lt; |x - x_0| &lt; \delta$ 时,有 $|f(x) - A| &lt; \varepsilon$. 极限存在准则两个极限存在准则:夹逼准则和单调有界准则。 准则一 (数列的夹逼准则)设有三个数列: $\lbrace x_n \rbrace \quad \lbrace y_n \rbrace \quad \lbrace z_n \rbrace$若他们满足条件:$(1) \quad y_n \leq x_n \leq z_n \quad (n=1,2,3…)$$(2) \quad \lim_{n \to \infty}y_n = A \quad \lim_{n \to \infty}z_n = A$则$\lim_{n \to \infty}x_n = A$ 该准则可以推广到函数的极限 准则二 (数列的单调有界准则)单调有界数列必有极限 柯西极限存在准则 数列 ${x_n}$ 收敛的充分必要条件是:对于任意给定的正数$\varepsilon$,存在正整数$N$,使得当$m&gt;N,n&gt;N$有:$$|x_n - x_m| &lt; \varepsilon$$ 两个重要极限$$\lim_{x \to 0} \frac {sinx} x = 1 \quad \quad (1)$$ $$\lim_{x \to \infty}(1 + \frac 1 x)^x = {\rm e} \quad \quad (2)$$]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[dpdk多线程访问hs的database]]></title>
     <url>%2F2018%2F05%2F01%2Fdpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database%2F</url>
     <content type="text"><![CDATA[1. hs_scratch_tHyperscan在扫描数据的时候，需要少量的临时空间来存储动态的内部数据。 2. 只有1个核但有多个数据库只有1个核，但有多个数据库时 只需要一个临时区域，使用hs_alloc_scratch()来分配。 为每个数据库调用hs_alloc_scratch()来确保分配的临时空间足够大。 3. 有一个主进程，多个备进程的情况在有多个核同时工作的场景中，扫描全局的hs数据库。 使用hs_clone_scratch()为每个线程创建一个临时控件。 下面的代码是一个例子：12345678910111213141516171819202122232425262728293031323334hs_error_t err;/* 为数据库db创建临时空间，如果有多个数据库则需要为scratch_prototype调用多次hs_alloc_scratch, * 例如有db1和db2: * ... * err = hs_alloc_scratch(db1, &amp;scratch_prototyep); * ... * err = hs_alloc_scratch(db2, &amp;scratch_prototyep); * ... **/hs_scratch_t *scratch_prototype = NULL;err = hs_alloc_scratch(db, &amp;scratch_prototype);if (err != HS_SUCCESS) &#123; printf("hs_alloc_scratch failed!"); exit(1);&#125;/* 每个线程都应该有一个自己的scratch临时空间 */hs_scratch_t *scratch_thread1 = NULL;hs_scratch_t *scratch_thread2 = NULL;/* 为每个线程克隆一个临时空间 */err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread1);if (err != HS_SUCCESS) &#123; printf("hs_clone_scratch failed!"); exit(1);&#125;err = hs_clone_scratch(scratch_prototype, &amp;scratch_thread2);if (err != HS_SUCCESS) &#123; printf("hs_clone_scratch failed!"); exit(1);&#125;/* 将alloc申请的临时空间释放,因为别的线程已不再需要这个临时空间 */hs_free_scratch(scratch_prototype); 该例子中的两个线程此时可以使用自己的临时空间来访问database了。在没有为每个线程申请临时空间而共用1个临时空间，线程不安全，会发生段错误。]]></content>

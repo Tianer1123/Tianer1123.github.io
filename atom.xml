@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tianer1123.github.io/"/>
-  <updated>2018-05-01T01:34:26.586Z</updated>
+  <updated>2018-05-08T06:09:07.309Z</updated>
   <id>https://tianer1123.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数与极限</title>
+    <link href="https://tianer1123.github.io/2018/05/08/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/"/>
+    <id>https://tianer1123.github.io/2018/05/08/函数与极限/</id>
+    <published>2018-05-08T06:09:07.309Z</published>
+    <updated>2018-05-08T06:09:07.309Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="函数极限的定义"><a href="#函数极限的定义" class="headerlink" title="函数极限的定义"></a>函数极限的定义</h1><h2 id="定义一"><a href="#定义一" class="headerlink" title="定义一"></a>定义一</h2><p>设函数 $f(x)$ 在点 $x_0$ 的某一去心邻域内有定义.如果存在常数 $A$ 对于任意给定的正数 $\varepsilon$ (不论它多么小)，总存在一个正数 $\delta$ ,使得当 $x$ 满足不等式 $0&lt;|x - x_0|&lt;\delta$ ,对应的函数 $f(x)$ 都满足不等式:<br>$$ |f(x) - A| &lt; \varepsilon $$ 那么常数 $A$ 就叫做函数 $f(x)$ 当 $x \to x_0$ 时的极限,记作<br>$$\lim_{x \to x_0}f(x) = A \text { 或 } f(x) \to A \quad (x \to x_0)$$</p><a id="more"></a><h2 id="定义一的简单描述"><a href="#定义一的简单描述" class="headerlink" title="定义一的简单描述"></a>定义一的简单描述</h2><p>$\lim_{x \to x_0}f(x) = A \Leftrightarrow \forall \varepsilon &gt; 0$ , $\exists \delta &gt; 0$ , 当 $0 &lt; |x - x_0| &lt; \delta$ 时,有 $|f(x) - A| &lt; \varepsilon$.</p><h1 id="极限存在准则"><a href="#极限存在准则" class="headerlink" title="极限存在准则"></a>极限存在准则</h1><p>两个极限存在准则:<strong>夹逼准则</strong>和<strong>单调有界准则</strong>。</p><h2 id="准则一-数列的夹逼准则"><a href="#准则一-数列的夹逼准则" class="headerlink" title="准则一 (数列的夹逼准则)"></a>准则一 (数列的夹逼准则)</h2><p>设有三个数列: $\lbrace x_n \rbrace \quad \lbrace y_n \rbrace \quad \lbrace z_n \rbrace$<br>若他们满足条件:<br>$(1) \quad y_n \leq x_n \leq z_n \quad (n=1,2,3…)$<br>$(2) \quad \lim_{n \to \infty}y_n = A \quad \lim_{n \to \infty}z_n = A$<br>则$\lim_{n \to \infty}x_n = A$</p><div class="note info"><p>该准则可以推广到函数的极限</p></div><h2 id="准则二-数列的单调有界准则"><a href="#准则二-数列的单调有界准则" class="headerlink" title="准则二 (数列的单调有界准则)"></a>准则二 (数列的单调有界准则)</h2><div class="note primary"><p>单调有界数列必有极限</p></div><div class="note info"><p><strong>柯西极限存在准则</strong>  数列 ${x_n}$ 收敛的充分必要条件是:对于任意给定的正数$\varepsilon$,存在正整数$N$,使得当$m&gt;N,n&gt;N$有:$$|x_n - x_m| &lt; \varepsilon$$</p></div><h2 id="两个重要极限"><a href="#两个重要极限" class="headerlink" title="两个重要极限"></a>两个重要极限</h2><div class="note primary"><p>$$\lim_{x \to 0} \frac {sinx} x = 1 \quad \quad (1)$$ $$\lim_{x \to \infty}(1 + \frac 1 x)^x = {\rm e} \quad \quad (2)$$</p></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;函数极限的定义&quot;&gt;&lt;a href=&quot;#函数极限的定义&quot; class=&quot;headerlink&quot; title=&quot;函数极限的定义&quot;&gt;&lt;/a&gt;函数极限的定义&lt;/h1&gt;&lt;h2 id=&quot;定义一&quot;&gt;&lt;a href=&quot;#定义一&quot; class=&quot;headerlink&quot; title=&quot;定义一&quot;&gt;&lt;/a&gt;定义一&lt;/h2&gt;&lt;p&gt;设函数 $f(x)$ 在点 $x_0$ 的某一去心邻域内有定义.如果存在常数 $A$ 对于任意给定的正数 $\varepsilon$ (不论它多么小)，总存在一个正数 $\delta$ ,使得当 $x$ 满足不等式 $0&amp;lt;|x - x_0|&amp;lt;\delta$ ,对应的函数 $f(x)$ 都满足不等式:&lt;br&gt;$$ |f(x) - A| &amp;lt; \varepsilon $$ 那么常数 $A$ 就叫做函数 $f(x)$ 当 $x \to x_0$ 时的极限,记作&lt;br&gt;$$\lim_{x \to x_0}f(x) = A \text { 或 } f(x) \to A \quad (x \to x_0)$$&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="math" scheme="https://tianer1123.github.io/categories/math/"/>
+    
+    
+      <category term="math" scheme="https://tianer1123.github.io/tags/math/"/>
+    
+  </entry>
   
   <entry>
     <title>dpdk多线程访问hs的database</title>
