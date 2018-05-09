@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[dpdk学习]]></title>
+    <url>%2F2018%2F05%2F09%2Fdpdk%2F</url>
+    <content type="text"><![CDATA[DPDK官方网站:http://dpdk.org/这篇记录使用dpdk遇到的问题解决方法和对dpdk的一些学习总结。继续更新。。。 DPDK中KNI模块]]></content>
+      <categories>
+        <category>dpdk</category>
+      </categories>
+      <tags>
+        <tag>dpdk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[scrapy]]></title>
     <url>%2F2018%2F05%2F08%2Fscrapy%2F</url>
     <content type="text"><![CDATA[scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。 安装建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行pip3 install scrapy，就可以安装。在pycharm中默认会将scrapy的依赖安装上。 创建项目1scrapy startproject myproject [project_dir] 编写爬虫代码以下是scrapy的一个例子(代码写到myproject-&gt;spiders目录下)： 12345678910111213141516171819202122232425262728293031323334353637383940import scrapyclass QuotesSpider(scrapy.Spider): name = "quotes" # def start_requests(self): # urls = [ # 'http://quotes.toscrape.com/page/1/', # 'http://quotes.toscrape.com/page/2/', # ] # for url in urls: # yield scrapy.Request(url=url, callback=self.parse) # 不重写start_request()，会调用默认的start_request函数。 start_urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] def parse(self, response): for quote in response.css('div.quote'): yield &#123; 'text': quote.css('span.text::text').extract_first(), 'author': quote.css('small.author::text').extract_first(), 'tags': quote.css('div.tags a.tag::text').extract(), &#125; # next_page = response.css('li.next a::attr(href)').extract_first() # if next_page is not null: # next_page = response.urljion(next_page) # 得到绝对路径 # yield scrapy.Request(url=next_page, callback=self.parse()) # 使用response.flow代替ruljion（可以使用相对路径） # for href in response.css('li.next a::attr(href)'): # yield response.follow(href, callback=self.parse) for a in response.css('li.next a::attr(href)'): yield response.follow(a, callback=self.parse) 运行项目1scrapy crawl myproject -o myproject.json -o参数是将分析出来的数据输出到文件。 参考:Scrapy官网:https://docs.scrapy.org/en/latest/index.html]]></content>
