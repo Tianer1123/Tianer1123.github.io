@@ -88,14 +88,14 @@
 <meta name="description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
 <meta name="keywords" content="python,scrapy,爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="scrapy">
-<meta property="og:url" content="https://tianer1123.github.io/2018/05/08/scrapy/index.html">
+<meta property="og:title" content="python爬虫框架scrapy">
+<meta property="og:url" content="https://tianer1123.github.io/2018/05/09/scrapy/index.html">
 <meta property="og:site_name" content="Tianer&#39;s Blog">
 <meta property="og:description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-08T09:53:03.227Z">
+<meta property="og:updated_time" content="2018-05-09T06:26:04.523Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="scrapy">
+<meta name="twitter:title" content="python爬虫框架scrapy">
 <meta name="twitter:description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://tianer1123.github.io/2018/05/08/scrapy/"/>
+  <link rel="canonical" href="https://tianer1123.github.io/2018/05/09/scrapy/"/>
 
 
 
 
 
-  <title>scrapy | Tianer's Blog</title>
+  <title>python爬虫框架scrapy | Tianer's Blog</title>
   
 
 
@@ -199,22 +199,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
+            归档
           </a>
         </li>
       
@@ -229,12 +219,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            归档
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/05/08/scrapy/">
+    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/05/09/scrapy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tianer">
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">scrapy</h1>
+          <h1 class="post-title" itemprop="name headline">python爬虫框架scrapy</h1>
         
 
         <div class="post-meta">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T17:53:03+08:00">
-                2018-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T14:26:04+08:00">
+                2018-05-09
               </time>
             
 
@@ -385,8 +385,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/08/scrapy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/08/scrapy/" itemprop="commentCount"></span>
+                <a href="/2018/05/09/scrapy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/09/scrapy/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,10 +448,10 @@
         <p><a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">scrapy</a>是一个python的爬虫框架,可以用来做数据采集，数据分析等。</p>
 <a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行<code>pip3 install scrapy</code>，就可以安装。在pycharm中默认会将<code>scrapy</code>的依赖安装上。</p>
-<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject myproject [project_dir]</span><br></pre></td></tr></table></figure>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject myproject [project_dir]</span><br></pre></td></tr></table></figure>
 <h1 id="编写爬虫代码"><a href="#编写爬虫代码" class="headerlink" title="编写爬虫代码"></a>编写爬虫代码</h1><p>以下是<a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">scrapy</a>的一个例子(代码写到myproject-&gt;spiders目录下)：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"quotes"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># def start_requests(self):</span></span><br><span class="line">    <span class="comment">#     urls = [</span></span><br><span class="line">    <span class="comment">#         'http://quotes.toscrape.com/page/1/',</span></span><br><span class="line">    <span class="comment">#         'http://quotes.toscrape.com/page/2/',</span></span><br><span class="line">    <span class="comment">#     ]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#     for url in urls:</span></span><br><span class="line">    <span class="comment">#         yield scrapy.Request(url=url, callback=self.parse)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 不重写start_request()，会调用默认的start_request函数。</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</span><br><span class="line">        <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> quote <span class="keyword">in</span> response.css(<span class="string">'div.quote'</span>):</span><br><span class="line">            <span class="keyword">yield</span> &#123;</span><br><span class="line">                <span class="string">'text'</span>: quote.css(<span class="string">'span.text::text'</span>).extract_first(),</span><br><span class="line">                <span class="string">'author'</span>: quote.css(<span class="string">'small.author::text'</span>).extract_first(),</span><br><span class="line">                <span class="string">'tags'</span>: quote.css(<span class="string">'div.tags a.tag::text'</span>).extract(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># next_page = response.css('li.next a::attr(href)').extract_first()</span></span><br><span class="line">        <span class="comment"># if next_page is not null:</span></span><br><span class="line">        <span class="comment">#     next_page = response.urljion(next_page) # 得到绝对路径</span></span><br><span class="line">        <span class="comment">#     yield scrapy.Request(url=next_page, callback=self.parse())</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用response.flow代替ruljion（可以使用相对路径）</span></span><br><span class="line">        <span class="comment"># for href in response.css('li.next a::attr(href)'):</span></span><br><span class="line">        <span class="comment">#     yield response.follow(href, callback=self.parse)</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> response.css(<span class="string">'li.next a::attr(href)'</span>):</span><br><span class="line">            <span class="keyword">yield</span> response.follow(a, callback=self.parse)</span><br></pre></td></tr></table></figure>
-<h1 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl myproject -o myproject.json</span><br></pre></td></tr></table></figure>
+<h1 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl myproject -o myproject.json</span><br></pre></td></tr></table></figure>
 <p><code>-o</code>参数是将分析出来的数据输出到文件。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h1><p><a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">Scrapy官网:https://docs.scrapy.org/en/latest/index.html</a></p>
 
@@ -528,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/08/函数与极限/" rel="next" title="函数与极限">
-                <i class="fa fa-chevron-left"></i> 函数与极限
+              <a href="/2018/05/09/dpdk/" rel="next" title="dpdk学习">
+                <i class="fa fa-chevron-left"></i> dpdk学习
               </a>
             
           </div>
@@ -537,10 +537,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/09/dpdk/" rel="prev" title="dpdk学习">
-                dpdk学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -614,7 +610,7 @@
                 alt="Tianer" />
             
               <p class="site-author-name" itemprop="name">Tianer</p>
-              <p class="site-description motion-element" itemprop="description">不积跬步，无以至千里；不积小流，无以成江海。</p>
+              <p class="site-description motion-element" itemprop="description">记录点滴</p>
           </div>
 
           <nav class="site-state motion-element">
