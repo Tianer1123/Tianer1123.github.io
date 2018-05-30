@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="hyperscan," />
+  <meta name="keywords" content="python,scrapy,爬虫," />
 
 
 
@@ -85,18 +85,20 @@
 
 
 
-<meta name="description" content="本文介使用hyperscan开发时遇到的问题。">
-<meta name="keywords" content="hyperscan">
+<meta name="description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
+<meta name="keywords" content="python,scrapy,爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hyperscan开发的时候遇到的问题">
-<meta property="og:url" content="https://tianer1123.github.io/2018/04/29/hyperscan开发遇到的问题/index.html">
+<meta property="og:title" content="python爬虫框架scrapy">
+<meta property="og:url" content="https://tianer1123.github.io/2018/05/17/scrapy/index.html">
 <meta property="og:site_name" content="Tianer&#39;s Blog">
-<meta property="og:description" content="本文介使用hyperscan开发时遇到的问题。">
+<meta property="og:description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-29T05:23:34.477Z">
+<meta property="og:image" content="http://scrapy-chs.readthedocs.io/zh_CN/1.0/_images/scrapy_architecture.png">
+<meta property="og:updated_time" content="2018-05-17T03:16:54.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hyperscan开发的时候遇到的问题">
-<meta name="twitter:description" content="本文介使用hyperscan开发时遇到的问题。">
+<meta name="twitter:title" content="python爬虫框架scrapy">
+<meta name="twitter:description" content="scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。">
+<meta name="twitter:image" content="http://scrapy-chs.readthedocs.io/zh_CN/1.0/_images/scrapy_architecture.png">
 
 
 
@@ -126,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://tianer1123.github.io/2018/04/29/hyperscan开发遇到的问题/"/>
+  <link rel="canonical" href="https://tianer1123.github.io/2018/05/17/scrapy/"/>
 
 
 
 
 
-  <title>hyperscan开发的时候遇到的问题 | Tianer's Blog</title>
+  <title>python爬虫框架scrapy | Tianer's Blog</title>
   
 
 
@@ -315,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/04/29/hyperscan开发遇到的问题/">
+    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/05/17/scrapy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tianer">
@@ -332,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hyperscan开发的时候遇到的问题</h1>
+          <h1 class="post-title" itemprop="name headline">python爬虫框架scrapy</h1>
         
 
         <div class="post-meta">
@@ -344,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T13:23:34+08:00">
-                2018-04-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T11:16:54+08:00">
+                2018-05-17
               </time>
             
 
@@ -367,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hyperscan/" itemprop="url" rel="index">
-                    <span itemprop="name">hyperscan</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -385,8 +387,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/29/hyperscan开发遇到的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/29/hyperscan开发遇到的问题/" itemprop="commentCount"></span>
+                <a href="/2018/05/17/scrapy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/17/scrapy/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -408,7 +410,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  249 字
+                  1,340 字
                 </span>
               
 
@@ -424,7 +426,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -445,23 +447,37 @@
       
 
       
-        <p>本文介使用hyperscan开发时遇到的问题。</p>
+        <p><a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">scrapy</a>是一个python的爬虫框架,可以用来做数据采集，数据分析等。</p>
 <a id="more"></a>
-<h1 id="问题列表"><a href="#问题列表" class="headerlink" title="问题列表"></a>问题列表</h1><ul>
-<li><a href="#1">dpdk多线程使用hyperscan模式查询，访问全局的db时报错。</a></li>
-<li><a href="#2">dpdk多线程使用hyperscan，只有一个scratch时报段错误。</a></li>
-<li><a href="#3">c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？</a></li>
+<h1 id="架构概览"><a href="#架构概览" class="headerlink" title="架构概览"></a>架构概览</h1><p><img src="http://scrapy-chs.readthedocs.io/zh_CN/1.0/_images/scrapy_architecture.png" alt="Scrapy框架图"></p>
+<h2 id="Scrapy引擎-Scrapy-Engine"><a href="#Scrapy引擎-Scrapy-Engine" class="headerlink" title="Scrapy引擎(Scrapy Engine)"></a>Scrapy引擎(Scrapy Engine)</h2><p>引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。</p>
+<h2 id="调度器-Scheduler"><a href="#调度器-Scheduler" class="headerlink" title="调度器(Scheduler)"></a>调度器(Scheduler)</h2><p>调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。</p>
+<h2 id="下载器-Downloader"><a href="#下载器-Downloader" class="headerlink" title="下载器(Downloader)"></a>下载器(Downloader)</h2><p>下载器负责获取页面数据并提供给引擎，而后提供给spider。</p>
+<h2 id="Spiders"><a href="#Spiders" class="headerlink" title="Spiders"></a>Spiders</h2><p>Spider是Scrapy用户编写用于分析response并提取item(即获取到的item)或额外跟进的URL的类。 每个spider负责处理一个特定(或一些)网站。</p>
+<h2 id="Item-Pipeline"><a href="#Item-Pipeline" class="headerlink" title="Item Pipeline"></a>Item Pipeline</h2><p>Item Pipeline负责处理被spider提取出来的item。典型的处理有清理、 验证及持久化(例如存取到数据库中)。</p>
+<h2 id="下载器中间件-Downloader-middlewares"><a href="#下载器中间件-Downloader-middlewares" class="headerlink" title="下载器中间件(Downloader middlewares)"></a>下载器中间件(Downloader middlewares)</h2><p>下载器中间件是在引擎及下载器之间的特定钩子(specific hook)，处理Downloader传递给引擎的response。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。</p>
+<h2 id="Spider中间件-Spider-middlewares"><a href="#Spider中间件-Spider-middlewares" class="headerlink" title="Spider中间件(Spider middlewares)"></a>Spider中间件(Spider middlewares)</h2><p>Spider中间件是在引擎及Spider之间的特定钩子(specific hook)，处理spider的输入(response)和输出(items及requests)。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。</p>
+<h1 id="安装和说明"><a href="#安装和说明" class="headerlink" title="安装和说明"></a>安装和说明</h1><p>建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行<code>pip3 install scrapy</code>，就可以安装。在pycharm中默认会将<code>scrapy</code>的依赖安装上。</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject myproject [project_dir]</span><br></pre></td></tr></table></figure>
+<h2 id="编写爬虫代码"><a href="#编写爬虫代码" class="headerlink" title="编写爬虫代码"></a>编写爬虫代码</h2><p>以下是<a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">scrapy</a>的一个例子(代码写到myproject-&gt;spiders目录下)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"quotes"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># def start_requests(self):</span></span><br><span class="line">    <span class="comment">#     urls = [</span></span><br><span class="line">    <span class="comment">#         'http://quotes.toscrape.com/page/1/',</span></span><br><span class="line">    <span class="comment">#         'http://quotes.toscrape.com/page/2/',</span></span><br><span class="line">    <span class="comment">#     ]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#     for url in urls:</span></span><br><span class="line">    <span class="comment">#         yield scrapy.Request(url=url, callback=self.parse)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 不重写start_request()，会调用默认的start_request函数。</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</span><br><span class="line">        <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> quote <span class="keyword">in</span> response.css(<span class="string">'div.quote'</span>):</span><br><span class="line">            <span class="keyword">yield</span> &#123;</span><br><span class="line">                <span class="string">'text'</span>: quote.css(<span class="string">'span.text::text'</span>).extract_first(),</span><br><span class="line">                <span class="string">'author'</span>: quote.css(<span class="string">'small.author::text'</span>).extract_first(),</span><br><span class="line">                <span class="string">'tags'</span>: quote.css(<span class="string">'div.tags a.tag::text'</span>).extract(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># next_page = response.css('li.next a::attr(href)').extract_first()</span></span><br><span class="line">        <span class="comment"># if next_page is not null:</span></span><br><span class="line">        <span class="comment">#     next_page = response.urljion(next_page) # 得到绝对路径</span></span><br><span class="line">        <span class="comment">#     yield scrapy.Request(url=next_page, callback=self.parse())</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 使用response.flow代替ruljion（可以使用相对路径）</span></span><br><span class="line">        <span class="comment"># for href in response.css('li.next a::attr(href)'):</span></span><br><span class="line">        <span class="comment">#     yield response.follow(href, callback=self.parse)</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> response.css(<span class="string">'li.next a::attr(href)'</span>):</span><br><span class="line">            <span class="keyword">yield</span> response.follow(a, callback=self.parse)</span><br></pre></td></tr></table></figure>
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl myproject -o myproject.json</span><br></pre></td></tr></table></figure>
+<p><code>-o</code>参数是将分析出来的数据输出到文件。</p>
+<h2 id="创建新的spider"><a href="#创建新的spider" class="headerlink" title="创建新的spider"></a>创建新的spider</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider [-t template] &lt;name&gt; &lt;domain&gt;</span><br></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider spider1 spider1.com</span><br></pre></td></tr></table></figure></p>
+<p><code>spider1.com</code>是告诉爬虫在爬取哪个域名的链接，不是这个域名内的链接就不再爬取。</p>
+<h1 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h1><h2 id="XPATH选择器例子和说明"><a href="#XPATH选择器例子和说明" class="headerlink" title="XPATH选择器例子和说明"></a>XPATH选择器例子和说明</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/html/head/title              <span class="comment"># 选择&lt;HTML&gt;文档中&lt;head&gt;标签内的&lt;title&gt;元素</span></span><br><span class="line">/html/head/title/text()       <span class="comment"># 选择&lt;title&gt;元素内的内容</span></span><br><span class="line">//td                          <span class="comment"># 选择所有的&lt;td&gt;元素</span></span><br><span class="line">/div[@class="mine"]           # 选择所有class="mine"的&lt;div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Scrapy中的item的说明"><a href="#Scrapy中的item的说明" class="headerlink" title="Scrapy中的item的说明"></a>Scrapy中的item的说明</h2><p><code>item</code>中定义的是保存要爬取数据的每个字段值的变量。定义在items.py中，这个文件是在创建项目时自动生成的。我们只需要在里面定义字段就行了，例如:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TutorialItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    name = scrapy.Field()</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    info = scrapy.Field()</span><br></pre></td></tr></table></figure></p>
+<p>在spider中使用<code>item</code>,部分代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tutorial.items <span class="keyword">import</span> TutorialItem</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItcastSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        node_list = response.xpath(<span class="string">"//div[@class='li_txt']"</span>)</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> node_list:</span><br><span class="line">            <span class="comment"># item是一个对象，类字典对象.可以直接转化为字典=&gt;dict(item)</span></span><br><span class="line">            item = TutorialItem()</span><br><span class="line"></span><br><span class="line">            name = node.xpath(<span class="string">"./h3/text()"</span>).extract()</span><br><span class="line">            title = node.xpath(<span class="string">"./h4/text()"</span>).extract()</span><br><span class="line">            info = node.xpath(<span class="string">"./p/text()"</span>).extract()</span><br><span class="line"></span><br><span class="line">            item[<span class="string">'name'</span>] = name[<span class="number">0</span>]</span><br><span class="line">            item[<span class="string">'title'</span>] = title[<span class="number">0</span>]</span><br><span class="line">            item[<span class="string">'info'</span>] = info[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 生成的数据返回给管道pipelines</span></span><br><span class="line">            <span class="keyword">yield</span> item</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="spider中的迭代元素时使用yield"><a href="#spider中的迭代元素时使用yield" class="headerlink" title="spider中的迭代元素时使用yield"></a>spider中的迭代元素时使用yield</h2><p>在spider中使用<code>yield</code>有以下作用:</p>
+<ul>
+<li>使用<code>yield</code>返回<code>item</code>，将<code>item</code>交给引擎，引擎会将<code>item</code>交给<code>pipelines</code>处理。</li>
+<li>使用<code>yield</code>迭代完后，后面的代码还可以继续执行。例如上面的<code>print()</code>在每次迭代完会执行一次。</li>
+<li>如果直接使用<code>return</code>，除了函数会退出，而且不会将返回结果交给<code>pipelines</code>处理。</li>
 </ul>
-<hr>
-<h2 id="1">dpdk多线程使用hyperscan模式查询，访问全局的db时报错。</h2>
-
-<p>应该使用<code>rte_malloc()</code>和<code>rte_free()</code>为hyperscan分配内存。如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">hs_rte_malloc</span><span class="params">(<span class="keyword">size_t</span> *size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rte_malloc(<span class="string">"hs_malloc"</span>, size, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hs_rte_free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    rte_free(ptr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hs_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* 设置自定义hs动态分配内存和释放内存的函数 */</span></span><br><span class="line">    hs_set_allocator(hs_rte_malloc, hs_rte_free);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2"> dpdk多线程使用hyperscan，只有一个scratch时报段错误。</h2>
-
-<p>参考<a href="https://tianer1123.github.io/2018/04/29/dpdk%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BF%E9%97%AEhs%E7%9A%84database/">dpdk多线程访问hs的database</a>。</p>
-<h2 id="3"> c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？</h2>
-
-<p>将<code>pattern</code>中的16进制做转换，例如:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 0x00 ==&gt; \x00 */</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (pattern[i] == <span class="number">0x00</span>) &#123;</span><br><span class="line">    expression[j++] = <span class="string">'\\'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\x'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\0'</span>;</span><br><span class="line">    expression[j++] = <span class="string">'\0'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="pipelines管道"><a href="#pipelines管道" class="headerlink" title="pipelines管道"></a>pipelines管道</h2><p><code>pipelines</code>也是在创建爬虫项目时自动生成在<code>pipelines.py</code>中，这里是对结构化数据进行存储。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TutorialPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这个函数非必须实现，这个函数在初始化时执行一次，可以初始化数据库参数或者打开文件描述符等。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.f = open(<span class="string">"pipelines.json"</span>, <span class="string">"wb+"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 该方法是处理item的。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        content = json.dumps(dict(item), ensure_ascii=<span class="keyword">False</span>) + <span class="string">",\n"</span></span><br><span class="line">        self.f.write(content.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这个函数非必须实现，在爬虫结束时执行，可以用来释放资源或一些后续工作。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.f.close()</span><br></pre></td></tr></table></figure></p>
+<p><strong>管道需要在settings.py中配置。</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以配置多个管道，后面数字是优先级，数值越小优先级越高。</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'tutorial.pipelines.TutorialPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h1><p><a href="https://docs.scrapy.org/en/latest/index.html" target="_blank" rel="noopener">Scrapy官网:https://docs.scrapy.org/en/latest/index.html</a></p>
 
       
     </div>
@@ -519,7 +535,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hyperscan/" rel="tag"><i class="fa fa-tag"></i> hyperscan</a>
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/scrapy/" rel="tag"><i class="fa fa-tag"></i> scrapy</a>
+          
+            <a href="/tags/爬虫/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
           
         </div>
       
@@ -532,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/29/hyperscan编译/" rel="next" title="编译hyperscan">
-                <i class="fa fa-chevron-left"></i> 编译hyperscan
+              <a href="/2018/05/14/导数和微分/" rel="next" title="导数和微分">
+                <i class="fa fa-chevron-left"></i> 导数和微分
               </a>
             
           </div>
@@ -542,8 +562,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/01/dpdk多线程访问hs的database/" rel="prev" title="dpdk多线程访问hs的database">
-                dpdk多线程访问hs的database <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/19/dpdk/" rel="prev" title="dpdk学习">
+                dpdk学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -724,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题列表"><span class="nav-number">1.</span> <span class="nav-text">问题列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.1.</span> <span class="nav-text">dpdk多线程使用hyperscan模式查询，访问全局的db时报错。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">1.2.</span> <span class="nav-text"> dpdk多线程使用hyperscan，只有一个scratch时报段错误。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">1.3.</span> <span class="nav-text"> c语言使用hyperscan，pattern中有16进制，编译时表达式该怎么写？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#架构概览"><span class="nav-number">1.</span> <span class="nav-text">架构概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy引擎-Scrapy-Engine"><span class="nav-number">1.1.</span> <span class="nav-text">Scrapy引擎(Scrapy Engine)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度器-Scheduler"><span class="nav-number">1.2.</span> <span class="nav-text">调度器(Scheduler)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载器-Downloader"><span class="nav-number">1.3.</span> <span class="nav-text">下载器(Downloader)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spiders"><span class="nav-number">1.4.</span> <span class="nav-text">Spiders</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Item-Pipeline"><span class="nav-number">1.5.</span> <span class="nav-text">Item Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载器中间件-Downloader-middlewares"><span class="nav-number">1.6.</span> <span class="nav-text">下载器中间件(Downloader middlewares)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spider中间件-Spider-middlewares"><span class="nav-number">1.7.</span> <span class="nav-text">Spider中间件(Spider middlewares)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装和说明"><span class="nav-number">2.</span> <span class="nav-text">安装和说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写爬虫代码"><span class="nav-number">2.2.</span> <span class="nav-text">编写爬虫代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行项目"><span class="nav-number">2.3.</span> <span class="nav-text">运行项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建新的spider"><span class="nav-number">2.4.</span> <span class="nav-text">创建新的spider</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#学习笔记"><span class="nav-number">3.</span> <span class="nav-text">学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XPATH选择器例子和说明"><span class="nav-number">3.1.</span> <span class="nav-text">XPATH选择器例子和说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy中的item的说明"><span class="nav-number">3.2.</span> <span class="nav-text">Scrapy中的item的说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spider中的迭代元素时使用yield"><span class="nav-number">3.3.</span> <span class="nav-text">spider中的迭代元素时使用yield</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pipelines管道"><span class="nav-number">3.4.</span> <span class="nav-text">pipelines管道</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考:</span></a></li></ol></div>
             
 
           </div>

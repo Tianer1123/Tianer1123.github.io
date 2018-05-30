@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[《如何阅读一本书》笔记]]></title>
+    <url>%2F2018%2F05%2F30%2Fhow_to_read_a_book%2F</url>
+    <content type="text"><![CDATA[之前读书没有章法，确切的说自己没学会怎么读一本书，也没有完整的读懂过一本书。《如何阅读一本书》正好教给我如何去读一本自己想读的书。 主动阅读作者范多伦和艾德列写的这本书内容比较多，结构有点乱。在大框架下穿插讲了一些其他的说明和技巧，例如主动阅读。我感觉可以把他们单独出来当一种技巧来讲，穿插到大框架里反而让人感觉有点乱。 主动阅读总结起来有两点: 问问题 做笔记 问问题 整体来说，这本书在讲什么？ 细部讲什么，怎么说的？ 是否有道理，全部有还是部分有？ 这本书跟我有关系吗？ 就是在刨根究底的问一些问题 做笔记 结构笔记 –&gt; 检视阅读的答案。 这是什么样的书？ 整本书在谈什么？ 整体框架是什么？ 概念笔记 辩论笔记 概述阅读的四个层次阅读分四个层次:基础阅读, 检视阅读, 分析阅读, 主题阅读。 基础阅读: 识字，文字都能读懂。 检视阅读: 在有限时间看完一本书，从表面观察这本书，了解这本书是哪种类型的书。 分析阅读: 真正全面阅读这本书，无限期读懂为止。 主题阅读: 阅读所有与主题相关的书，多用于写论文之类。 每个层次该如何去做基础阅读识字和基础的阅读在上小学就已经完成，这个阶段并没有真正的开始阅读，而是做一个准备。 检视阅读监视阅读分两个步骤（也可以合并成一个步骤）: 有系统的略读或粗读 看书名，序言 研究目录 索引 作者的介绍 看几个主题 读几段文字 粗浅的阅读 从头到尾读一遍这本书，不用全部读懂，无论能读懂多少，总是有收获的。哪怕觉得这本书没有用，不再去读第二遍了。 分析阅读 分析阅读第一阶段或者说找出这本书在谈些什么东西的四个规则: (1)依照书本的种类与主题作分类。 (2)用最简短的句子说出整本书在谈什么。 (3)按照顺序关系，列出全书的重要部分。将全书的纲要拟出来以后，再将各个部分的纲要一一列出来。 (4)找出作者在问的问题，或者作者想解决的问题。 分析阅读第二阶段或者说找出一本书到底在说什么的规则(诠释一本书的内容) (5)诠释作者使用的关键字，与作者达成共识。 (6)从最重要的句子中抓出作者的重要主旨。 (7)找出作者的论述，重新架构这些论述的前因后果，以明白作者的主张。 (8)确定作者已经解决了哪些问题，还有哪些问题是未解决的。在未解决的问题中，确定哪些是作者认为自己无法解决的问题。 分析阅读的第三个阶段，像沟通知识一样评论这本书。 没读懂不要评论。批评的话要有证据能证明。 主题阅读主题阅读分两个阶段，一个是准备阶段，一个是主题阅读本身。 观察研究范围: 主题阅读的准备阶段 针对你要研究的主题，设计一份实验性的书目。可以参考图书馆目录、专家建议与书中的书目索引。 浏览这份书目上的所有书，确定哪些与你要研究的主题相关，并就你得主题建立起清楚的感念。 主题阅读: 阅读所有第一阶段收集到的书 浏览所有在第一阶段被认定的与你主题相关的书，找到最相关的章节。 根据主题创造出一套中立的词汇，带引作者与你达成共识–无论作者是否实际用到这些词汇，所有的作者，或至少绝大部分的作者都可以用这套词汇来诠释。 建立一个中立的主旨，列出一连串的问题–无论作者是否明白谈过这些问题，所有的作者，或者至少大多数的作者都能要解读为针对这些问题提供了他们的回答。 界定主要和次要的议题。然后将作者针对各个问题的不同意见整理陈列在各个议题之旁。你要记住，各个作者之间或之中，不见得一定存在着某个议题。有时候你需要针对一些不是作者主要关心范围内的事情，把他的观点解读，才能构建出这种议题。 分析这些讨论。这的把问题和议题按顺序排列，以求凸显主题。比较有共同性的议题，要放到比较没有共同性议题之前。各个议题之间的关系也要清楚的界定出来。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F05%2F27%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[dpdk学习]]></title>
+    <url>%2F2018%2F05%2F19%2Fdpdk%2F</url>
+    <content type="text"><![CDATA[这篇记录使用dpdk遇到的问题，解决方法和对dpdk的一些学习总结。持续更新。。。 DPDK中KNI模块dpdk中KNI(Kernel NIC Interface,内核网卡接口)模块是DPDK允许用户态应用于内核协议栈交换数据包的一种解决方案。 DPDK KNI应用程序组件: 参考:dpdk文档: http://dpdk.org/doc/guides/index.htmlKernel NIC Interface Sample Application]]></content>
+      <categories>
+        <category>dpdk</category>
+      </categories>
+      <tags>
+        <tag>dpdk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python爬虫框架scrapy]]></title>
-    <url>%2F2018%2F05%2F09%2Fscrapy%2F</url>
-    <content type="text"><![CDATA[scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。 安装建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行pip3 install scrapy，就可以安装。在pycharm中默认会将scrapy的依赖安装上。 创建项目1scrapy startproject myproject [project_dir] 编写爬虫代码以下是scrapy的一个例子(代码写到myproject-&gt;spiders目录下)： 12345678910111213141516171819202122232425262728293031323334353637383940import scrapyclass QuotesSpider(scrapy.Spider): name = "quotes" # def start_requests(self): # urls = [ # 'http://quotes.toscrape.com/page/1/', # 'http://quotes.toscrape.com/page/2/', # ] # for url in urls: # yield scrapy.Request(url=url, callback=self.parse) # 不重写start_request()，会调用默认的start_request函数。 start_urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] def parse(self, response): for quote in response.css('div.quote'): yield &#123; 'text': quote.css('span.text::text').extract_first(), 'author': quote.css('small.author::text').extract_first(), 'tags': quote.css('div.tags a.tag::text').extract(), &#125; # next_page = response.css('li.next a::attr(href)').extract_first() # if next_page is not null: # next_page = response.urljion(next_page) # 得到绝对路径 # yield scrapy.Request(url=next_page, callback=self.parse()) # 使用response.flow代替ruljion（可以使用相对路径） # for href in response.css('li.next a::attr(href)'): # yield response.follow(href, callback=self.parse) for a in response.css('li.next a::attr(href)'): yield response.follow(a, callback=self.parse) 运行项目1scrapy crawl myproject -o myproject.json -o参数是将分析出来的数据输出到文件。 参考:Scrapy官网:https://docs.scrapy.org/en/latest/index.html]]></content>
+    <url>%2F2018%2F05%2F17%2Fscrapy%2F</url>
+    <content type="text"><![CDATA[scrapy是一个python的爬虫框架,可以用来做数据采集，数据分析等。 架构概览 Scrapy引擎(Scrapy Engine)引擎负责控制数据流在系统中所有组件中流动，并在相应动作发生时触发事件。 调度器(Scheduler)调度器从引擎接受request并将他们入队，以便之后引擎请求他们时提供给引擎。 下载器(Downloader)下载器负责获取页面数据并提供给引擎，而后提供给spider。 SpidersSpider是Scrapy用户编写用于分析response并提取item(即获取到的item)或额外跟进的URL的类。 每个spider负责处理一个特定(或一些)网站。 Item PipelineItem Pipeline负责处理被spider提取出来的item。典型的处理有清理、 验证及持久化(例如存取到数据库中)。 下载器中间件(Downloader middlewares)下载器中间件是在引擎及下载器之间的特定钩子(specific hook)，处理Downloader传递给引擎的response。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。 Spider中间件(Spider middlewares)Spider中间件是在引擎及Spider之间的特定钩子(specific hook)，处理spider的输入(response)和输出(items及requests)。 其提供了一个简便的机制，通过插入自定义代码来扩展Scrapy功能。 安装和说明建议在python虚拟机环境下安装。最新版本的pycharm创建的项目默认就是虚拟机环境，在pycharm中打开终端执行pip3 install scrapy，就可以安装。在pycharm中默认会将scrapy的依赖安装上。 创建项目1scrapy startproject myproject [project_dir] 编写爬虫代码以下是scrapy的一个例子(代码写到myproject-&gt;spiders目录下)： 12345678910111213141516171819202122232425262728293031323334353637383940import scrapyclass QuotesSpider(scrapy.Spider): name = "quotes" # def start_requests(self): # urls = [ # 'http://quotes.toscrape.com/page/1/', # 'http://quotes.toscrape.com/page/2/', # ] # for url in urls: # yield scrapy.Request(url=url, callback=self.parse) # 不重写start_request()，会调用默认的start_request函数。 start_urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] def parse(self, response): for quote in response.css('div.quote'): yield &#123; 'text': quote.css('span.text::text').extract_first(), 'author': quote.css('small.author::text').extract_first(), 'tags': quote.css('div.tags a.tag::text').extract(), &#125; # next_page = response.css('li.next a::attr(href)').extract_first() # if next_page is not null: # next_page = response.urljion(next_page) # 得到绝对路径 # yield scrapy.Request(url=next_page, callback=self.parse()) # 使用response.flow代替ruljion（可以使用相对路径） # for href in response.css('li.next a::attr(href)'): # yield response.follow(href, callback=self.parse) for a in response.css('li.next a::attr(href)'): yield response.follow(a, callback=self.parse) 运行项目1scrapy crawl myproject -o myproject.json -o参数是将分析出来的数据输出到文件。 创建新的spider1scrapy genspider [-t template] &lt;name&gt; &lt;domain&gt; 例如:1scrapy genspider spider1 spider1.com spider1.com是告诉爬虫在爬取哪个域名的链接，不是这个域名内的链接就不再爬取。 学习笔记XPATH选择器例子和说明1234/html/head/title # 选择&lt;HTML&gt;文档中&lt;head&gt;标签内的&lt;title&gt;元素/html/head/title/text() # 选择&lt;title&gt;元素内的内容//td # 选择所有的&lt;td&gt;元素/div[@class="mine"] # 选择所有class="mine"的&lt;div&gt; Scrapy中的item的说明item中定义的是保存要爬取数据的每个字段值的变量。定义在items.py中，这个文件是在创建项目时自动生成的。我们只需要在里面定义字段就行了，例如:1234class TutorialItem(scrapy.Item): name = scrapy.Field() title = scrapy.Field() info = scrapy.Field() 在spider中使用item,部分代码:123456789101112131415161718192021from tutorial.items import TutorialItemclass ItcastSpider(scrapy.Spider): def parse(self, response): node_list = response.xpath("//div[@class='li_txt']") for node in node_list: # item是一个对象，类字典对象.可以直接转化为字典=&gt;dict(item) item = TutorialItem() name = node.xpath("./h3/text()").extract() title = node.xpath("./h4/text()").extract() info = node.xpath("./p/text()").extract() item['name'] = name[0] item['title'] = title[0] item['info'] = info[0] # 生成的数据返回给管道pipelines yield item print("Hello World") spider中的迭代元素时使用yield在spider中使用yield有以下作用: 使用yield返回item，将item交给引擎，引擎会将item交给pipelines处理。 使用yield迭代完后，后面的代码还可以继续执行。例如上面的print()在每次迭代完会执行一次。 如果直接使用return，除了函数会退出，而且不会将返回结果交给pipelines处理。 pipelines管道pipelines也是在创建爬虫项目时自动生成在pipelines.py中，这里是对结构化数据进行存储。123456789101112131415class TutorialPipeline(object): # 这个函数非必须实现，这个函数在初始化时执行一次，可以初始化数据库参数或者打开文件描述符等。 def __init__(self): self.f = open("pipelines.json", "wb+") # 该方法是处理item的。 def process_item(self, item, spider): content = json.dumps(dict(item), ensure_ascii=False) + ",\n" self.f.write(content.encode("utf-8")) return item # 这个函数非必须实现，在爬虫结束时执行，可以用来释放资源或一些后续工作。 def close_spider(self, spider): self.f.close() 管道需要在settings.py中配置。1234# 可以配置多个管道，后面数字是优先级，数值越小优先级越高。ITEM_PIPELINES = &#123; 'tutorial.pipelines.TutorialPipeline': 300,&#125; 参考:Scrapy官网:https://docs.scrapy.org/en/latest/index.html]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -14,14 +42,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[dpdk学习]]></title>
-    <url>%2F2018%2F05%2F09%2Fdpdk%2F</url>
-    <content type="text"><![CDATA[这篇记录使用dpdk遇到的问题，解决方法和对dpdk的一些学习总结。持续更新。。。 DPDK中KNI模块dpdk中KNI(Kernel NIC Interface,内核网卡接口)模块是DPDK允许用户态应用于内核协议栈交换数据包的一种解决方案。 DPDK KNI应用程序组件: 参考:dpdk文档: http://dpdk.org/doc/guides/index.htmlKernel NIC Interface Sample Application]]></content>
+    <title><![CDATA[导数和微分]]></title>
+    <url>%2F2018%2F05%2F14%2F%E5%AF%BC%E6%95%B0%E5%92%8C%E5%BE%AE%E5%88%86%2F</url>
+    <content type="text"><![CDATA[导数和微分定理. 导数导数的定义设函数$y = f(x)$在$x_0$的某个邻域内有定义，当自变量$x$在$x_0$取得增量$\Delta x$(点$x_0 + \Delta x$仍在该领域内)时，相应的，因变量取得增量$\Delta y = f(x_0 + \Delta x) - f(x_0)$;如果$\Delta y$与$\Delta x$之比当$\Delta x \to 0$时的极限存在，那么成函数$y = f(x)$在点$x_0$处可导，并称这个极限为函数$y = f(x)$在点$x_0$处的导数,记为$f’(x_0)$，即：$$f’(x_0) = \lim_{\Delta x \to 0}\frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0}\frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}$$也可以记作：$y’\mid_{x=x_0}$，$\frac{\mathrm{d} y }{\mathrm{d} x}\mid_{x=x_0}$或$\frac{\mathrm{d} f(x)}{\mathrm{d} x} \mid_{x=x_0}$]]></content>
       <categories>
-        <category>dpdk</category>
+        <category>math</category>
       </categories>
       <tags>
-        <tag>dpdk</tag>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -68,18 +96,6 @@
         <tag>hyperscan</tag>
         <tag>编译</tag>
         <tag>安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F04%2F29%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>HelloWorld</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>install</tag>
       </tags>
   </entry>
 </search>
