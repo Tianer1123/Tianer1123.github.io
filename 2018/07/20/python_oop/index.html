@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,面向对象,设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tianer's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="对象是一个数据和相关行为的集合。  面向对象分析(OOA)：将问题、任务或者过程进行分析，识别其中的对象和行为的关系。产出需求。 面向对象设计(OOD)：将分析结果（需求）转化为实践规范。就是设计出具体的类和接口。产出实践规范 面向对象编程(OOP)：将设计结果编码成可以工作的程序的过程。产出程序  然而以上只是理论上的，实际做项目可能都是迭代式开发的。因为任何一个步骤都可能不是完美的。 面向对象">
+<meta name="keywords" content="python,面向对象,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python面向对象和设计模式">
+<meta property="og:url" content="https://tianer1123.github.io/2018/07/20/python_oop/index.html">
+<meta property="og:site_name" content="Tianer&#39;s Blog">
+<meta property="og:description" content="对象是一个数据和相关行为的集合。  面向对象分析(OOA)：将问题、任务或者过程进行分析，识别其中的对象和行为的关系。产出需求。 面向对象设计(OOD)：将分析结果（需求）转化为实践规范。就是设计出具体的类和接口。产出实践规范 面向对象编程(OOP)：将设计结果编码成可以工作的程序的过程。产出程序  然而以上只是理论上的，实际做项目可能都是迭代式开发的。因为任何一个步骤都可能不是完美的。 面向对象">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-20T10:12:38.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python面向对象和设计模式">
+<meta name="twitter:description" content="对象是一个数据和相关行为的集合。  面向对象分析(OOA)：将问题、任务或者过程进行分析，识别其中的对象和行为的关系。产出需求。 面向对象设计(OOD)：将分析结果（需求）转化为实践规范。就是设计出具体的类和接口。产出实践规范 面向对象编程(OOP)：将设计结果编码成可以工作的程序的过程。产出程序  然而以上只是理论上的，实际做项目可能都是迭代式开发的。因为任何一个步骤都可能不是完美的。 面向对象">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tianer1123.github.io/2018/07/20/python_oop/"/>
+
+
+
+
+
+  <title>python面向对象和设计模式 | Tianer's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/Tianer1123"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tianer's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tianer1123.github.io/2018/07/20/python_oop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tianer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7273262?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tianer's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python面向对象和设计模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T18:12:38+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/20/python_oop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/20/python_oop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,698 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  29 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>对象是一个数据和相关行为的集合。</strong></p>
+<ul>
+<li>面向对象分析(<code>OOA</code>)：将问题、任务或者过程进行分析，识别其中的对象和行为的关系。<strong>产出需求</strong>。</li>
+<li>面向对象设计(<code>OOD</code>)：将分析结果（需求）转化为实践规范。就是设计出具体的类和接口。<strong>产出实践规范</strong></li>
+<li>面向对象编程(<code>OOP</code>)：将设计结果编码成可以工作的程序的过程。<strong>产出程序</strong></li>
+</ul>
+<p>然而以上只是理论上的，实际做项目可能都是<strong>迭代式开发</strong>的。因为任何一个步骤都可能不是完美的。</p>
+<p>面向对象分析和设计是找出对象是什么以及他们之间是如何交互的。使这些交互变得简单和直观的原则是:</p>
+<ul>
+<li>接口：是别的类对象可以与该对象交互的属性和行为的集合。接口需要精心设计而不能随意改变，因为接口变动，与其交互的对象都会需要发生变化。</li>
+<li>封装：将内部实现的细节隐藏起来。PYTHON中没有真正意义上的隐藏。</li>
+<li>抽象：把公共接口和私有接口分开而封装信息的过程。私有接口用于信息的隐藏。</li>
+</ul>
+<a id="more"></a>
+<p>设计模式类似于数学公式，在遇到特定问题时，如果自己没有更好的解决方案，套用这些与之对应的“数学公式”，可以帮助解决这个问题。</p>
+<h1 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h1><h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><blockquote>
+<p>什么时候使用工厂设计模式<br>(a)想要追踪对象创建时。(b)想要将对象的创建和使用解耦时。(c)想要优化应用的性能和资源占用时。</p>
+</blockquote>
+<h3 id="工厂方法："><a href="#工厂方法：" class="headerlink" title="工厂方法："></a>工厂方法：</h3><p>使用工厂方法创建类对象，不再使用类来创建。用户不需要知道创建对象的细节。只需要向工厂方法传递一个参数，告诉工厂要做什么就行了。</p>
+<p>工厂方法设计模式例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> etree</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONConnector</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, filepath)</span>:</span></span><br><span class="line">        self.data = dict()</span><br><span class="line">        <span class="keyword">with</span> open(filepath, mode=<span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            self.data = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parsed_data</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.data</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMLConnector</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, filepath)</span>:</span></span><br><span class="line">        self.tree = etree.parse(filepath)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parsed_data</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.tree</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connection_factory</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> filepath.endswith(<span class="string">'json'</span>):</span><br><span class="line">        connector = JSONConnector</span><br><span class="line">    <span class="keyword">elif</span> filepath.endswith(<span class="string">'xml'</span>):</span><br><span class="line">        connector = XMLConnector</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">'cannot connect to &#123;&#125;'</span>.format(filepath))</span><br><span class="line">    <span class="keyword">return</span> connector(filepath)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_to</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    factory = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        factory = connection_factory(filepath)</span><br><span class="line">    <span class="keyword">except</span> ValueError <span class="keyword">as</span> ve:</span><br><span class="line">        print(ve)</span><br><span class="line">    <span class="keyword">return</span> factory</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    sqlite_factory = connect_to(<span class="string">'data/person.sq3'</span>)</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line">    xml_factory = connect_to(<span class="string">'data/person.xml'</span>)</span><br><span class="line">    xml_data = xml_factory.parsed_data</span><br><span class="line">    liars = xml_data.findall(<span class="string">".//&#123;&#125;[&#123;&#125;='&#123;&#125;.]"</span>.format(<span class="string">'person'</span>, <span class="string">'lastName'</span>, <span class="string">'Liars'</span>))</span><br><span class="line">    print(<span class="string">'found: &#123;&#125; persons'</span>.format(len(liars)))</span><br><span class="line">    <span class="keyword">for</span> liar <span class="keyword">in</span> liars:</span><br><span class="line">        print(<span class="string">'first name: &#123;&#125;'</span>.format(liar.find(<span class="string">'firstName'</span>).text))</span><br><span class="line">        print(<span class="string">'last name: &#123;&#125;'</span>.format(liar.find(<span class="string">'lastName'</span>).text))</span><br><span class="line">        [print(<span class="string">'phone number (&#123;&#125;)'</span>.format(p.attrib[<span class="string">'type'</span>]), p.text) <span class="keyword">for</span> p <span class="keyword">in</span> liar.find(<span class="string">'phoneNumbers'</span>)]</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line">    json_factory = connect_to(<span class="string">'data/donut.json'</span>)</span><br><span class="line">    json_data = json_factory.parsed_data</span><br><span class="line">    print(<span class="string">'found: &#123;&#125; donuts'</span>.format(len(json_data)))</span><br><span class="line">    <span class="keyword">for</span> donut <span class="keyword">in</span> json_data:</span><br><span class="line">        print(<span class="string">'name: &#123;&#125;'</span>.format(donut[<span class="string">'name'</span>]))</span><br><span class="line">        print(<span class="string">'price: $&#123;&#125;'</span>.format(donut[<span class="string">'ppu'</span>]))</span><br><span class="line">        [print(<span class="string">'topping: &#123;&#125; &#123;&#125;'</span>.format(t[<span class="string">'id'</span>], t[<span class="string">'type'</span>])) <span class="keyword">for</span> t <span class="keyword">in</span> donut[<span class="string">'topping'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><blockquote>
+<p>何时使用抽象工厂?<br>一开始使用工厂方法，如果需要很多不同种类的工厂方法，就要考虑使用抽象工厂。</p>
+</blockquote>
+<p>抽象工厂是一组工厂方法，每组工厂方法负责生产不同种类的对象。它是工厂方法的泛化。</p>
+<p>抽象工厂例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Frog</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">interact_with</span><span class="params">(self, obstacle)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; the Frog encounters &#123;&#125; and &#123;&#125;!'</span>.format(self, obstacle, obstacle.action()))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bug</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'a bug'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">action</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'eats it!'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FrogWorld</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        print(self)</span><br><span class="line">        self.player_name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'\n\n\t-------- Frog World -------'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_character</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Frog(self.player_name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_obstacle</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Bug()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wizard</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">interact_with</span><span class="params">(self, obstacle)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; the Wizard battles against &#123;&#125; and &#123;&#125;'</span>.format(self, obstacle, obstacle.action()))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ork</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'an evil ork'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">action</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'kills it!'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WizardWorld</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        print(self)</span><br><span class="line">        self.player_name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'\n\n\t-------- Wizard World -------'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_character</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Wizard(self.player_name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_obstacle</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Ork()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GameEnvironment</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, factory)</span>:</span></span><br><span class="line">        self.hero = factory.make_character()</span><br><span class="line">        self.obstacle = factory.make_obstacle()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.hero.interact_with(self.obstacle)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vaildate_age</span><span class="params">(name)</span>:</span></span><br><span class="line">    age = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        age = input(<span class="string">'Welcome &#123;&#125;. How old are you? '</span>.format(name))</span><br><span class="line">        age = int(age)</span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        print(<span class="string">'Age &#123;&#125; is invalid, please try again...'</span>.format(age))</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">False</span>, age)</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">True</span>, age)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    name = input(<span class="string">"Hello, What's your name? "</span>)</span><br><span class="line">    valid_input = <span class="keyword">False</span></span><br><span class="line">    age = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> valid_input:</span><br><span class="line">        valid_input, age = vaildate_age(name)</span><br><span class="line">    game = FrogWorld <span class="keyword">if</span> age &lt; <span class="number">18</span> <span class="keyword">else</span> WizardWorld</span><br><span class="line">    environment = GameEnvironment(game(name))</span><br><span class="line">    environment.play()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><blockquote>
+<p>适用的场景:<br>(1) 想要创建一个复杂的对象。(对象有多个部分构成，创建对象需要经过不同的步骤，这些步骤也需要一定的顺序)<br>(2) 一个对象有不同的表现，并且表现和创建解耦。<br>(3) 想要在某个时间点创建，但在稍后的某个时间访问。</p>
+</blockquote>
+<p>在创建一个对象的时候(实例化出来的是一个空对象)，只有把对象的所有部件都创建完成，才能成为一个完整对象。例如一个网页生成器，只有把页面元素都生成完才能成为一个完整的页面。<br>建造者模式有两部分：建造者和指挥者。<br>工厂模式和创建者模式的区别类似于购买电脑，购买品牌电脑适合工厂模式，购买定制电脑适合建造者模式。</p>
+<p><em>建造者中创建对象，对象中只有必要部件参数。建造者拥有建造不同表现对象的所有部件功能。指挥者告诉建造者完成那些部件。</em></p>
+<p>建造者例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">PizzaProgress = Enum(<span class="string">'PizzaProgress'</span>, <span class="string">'queued preparation baking ready'</span>)</span><br><span class="line">PizzaDough = Enum(<span class="string">'PizzaDough'</span>, <span class="string">'thin thick'</span>)</span><br><span class="line">PizzaSauce = Enum(<span class="string">'PizzaSauce'</span>, <span class="string">'tomato creme_fraiche'</span>)</span><br><span class="line">PizzaTopping = Enum(<span class="string">'PizzaTopping'</span>, <span class="string">'mozzarella double_mozzarella bacon ham mushrooms red_onion oregano'</span>)</span><br><span class="line">STEP_DELAY = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pizza</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.dough = <span class="keyword">None</span></span><br><span class="line">        self.sauce = <span class="keyword">None</span></span><br><span class="line">        self.topping = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">prepare_dough</span><span class="params">(self, dough)</span>:</span></span><br><span class="line">        self.dough = dough</span><br><span class="line">        print(<span class="string">'preparing the &#123;&#125; dough of your &#123;&#125;...'</span>.format(self.dough.name, self))</span><br><span class="line">        time.sleep(STEP_DELAY)</span><br><span class="line">        print(<span class="string">'done with the &#123;&#125; dough.'</span>.format(self.dough.name))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MargaritaBuilder</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.pizza = Pizza(<span class="string">'margarita'</span>)</span><br><span class="line">        self.progress = PizzaProgress.queued</span><br><span class="line">        self.baking_time = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">prepare_dough</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.progress = PizzaProgress.preparation</span><br><span class="line">        self.pizza.prepare_dough(PizzaDough.thin)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_sauce</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'adding the tomato sauce to your margarita...'</span>)</span><br><span class="line">        self.pizza.sauce = PizzaSauce.tomato</span><br><span class="line">        time.sleep(STEP_DELAY)</span><br><span class="line">        print(<span class="string">'done with the tomato sauce.'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_topping</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'add the topping(double mozzarella, oregano) to your margarita...'</span>)</span><br><span class="line">        self.pizza.topping.append([i <span class="keyword">for</span> i <span class="keyword">in</span> (PizzaTopping.double_mozzarella, PizzaTopping.oregano)])</span><br><span class="line">        time.sleep(STEP_DELAY)</span><br><span class="line">        print(<span class="string">'done with the topping(double mozzarella, oregano).'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bake</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.progress = PizzaProgress.baking</span><br><span class="line">        print(<span class="string">'baking your margarita for &#123;&#125; seconds.'</span>.format(self.baking_time))</span><br><span class="line">        time.sleep(self.baking_time)</span><br><span class="line">        self.progress = PizzaProgress.ready</span><br><span class="line">        print(<span class="string">'your margarita is ready'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreamyBaconBuilder</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.pizza = Pizza(<span class="string">'creamy bacon'</span>)</span><br><span class="line">        self.progress = PizzaProgress.queued</span><br><span class="line">        self.baking_time = <span class="number">7</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">prepare_dough</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.progress = PizzaProgress.preparation</span><br><span class="line">        self.pizza.prepare_dough(PizzaDough.thick)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_sauce</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'adding the creme fraiche sauce to your creamy bacon...'</span>)</span><br><span class="line">        self.pizza.sauce = PizzaSauce.creme_fraiche</span><br><span class="line">        time.sleep(STEP_DELAY)</span><br><span class="line">        print(<span class="string">'done with the creme fraiche sauce.'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_topping</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'add the topping(mozzarella, bacon, ham, mushrooms, red onion, oregano) to your creamy bacon'</span>)</span><br><span class="line">        self.pizza.topping.append([t <span class="keyword">for</span> t <span class="keyword">in</span> (PizzaTopping.mozzarella,</span><br><span class="line">                                               PizzaTopping.bacon,</span><br><span class="line">                                               PizzaTopping.ham, PizzaTopping.mushrooms,</span><br><span class="line">                                               PizzaTopping.red_onion, PizzaTopping.oregano)])</span><br><span class="line">        time.sleep(STEP_DELAY)</span><br><span class="line">        print(<span class="string">'done with the topping(mozzarella, bacon, ham, mushrooms, red onion, oregano).'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bake</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.progress = PizzaProgress.baking</span><br><span class="line">        print(<span class="string">'baking your creamy bacon for &#123;&#125; seconds.'</span>.format(self.baking_time))</span><br><span class="line">        time.sleep(self.baking_time)</span><br><span class="line">        self.progress = PizzaProgress.ready</span><br><span class="line">        print(<span class="string">'your creamy bacon is ready'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Waiter</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.builder = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">construct_pizza</span><span class="params">(self, builder)</span>:</span></span><br><span class="line">        self.builder = builder</span><br><span class="line">        [step() <span class="keyword">for</span> step <span class="keyword">in</span> (builder.prepare_dough, builder.add_sauce, builder.add_topping, builder.bake)]</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pizza</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.builder.pizza</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate_style</span><span class="params">(builders)</span>:</span></span><br><span class="line">    builder = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pizza_style = input(<span class="string">'What pizza would you like, [m]argarita or [c]reamy bacon? '</span>)</span><br><span class="line">        builder = builders[pizza_style]()</span><br><span class="line">    <span class="keyword">except</span> KeyError:</span><br><span class="line">        print(<span class="string">'Sorry, only margarita (key m) and creamy bacon (key c) are available'</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">False</span>, builder)</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">True</span>, builder)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    builder = <span class="keyword">None</span></span><br><span class="line">    builders = dict(m=MargaritaBuilder, c=CreamyBaconBuilder)</span><br><span class="line">    valid_input = <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> valid_input:</span><br><span class="line">        valid_input, builder = validate_style(builders)</span><br><span class="line">    print()</span><br><span class="line">    waiter = Waiter()</span><br><span class="line">    waiter.construct_pizza(builder)</span><br><span class="line">    pizza = waiter.pizza</span><br><span class="line">    print()</span><br><span class="line">    print(<span class="string">'Enjoy your &#123;&#125;！'</span>.format(pizza))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">     main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><blockquote>
+<p>创建一个对象的副本(克隆)的时候。</p>
+</blockquote>
+<ul>
+<li>创建一个浅副本，副本依赖一个引用。</li>
+<li>创建一个深副本，副本复制所有东西。(deepcopy)</li>
+</ul>
+<h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><blockquote>
+<p>当两个(或者多个)接口不兼容的时候，通过添加一些程序(适配器)来使两个接口兼容。此时可以使用适配器设计模式。</p>
+</blockquote>
+<p>例子程序(external.py和adapter.py):<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Synthesizer</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'the &#123;&#125; synthesizer'</span>.format(self.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'is playing an electronic song.'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'the &#123;&#125; human'</span>.format(self.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">speak</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'says hello'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> design_mode.adapter_mode.external <span class="keyword">import</span> Synthesizer, Human</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'the &#123;&#125; computer'</span>.format(self.name)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'execute a program'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adapter</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, obj, adapter_method)</span>:</span></span><br><span class="line">        self.obj = obj</span><br><span class="line">        <span class="comment"># help(self.__dict__.update())</span></span><br><span class="line">        <span class="comment"># dict.update(dict2) 将字典dict2的值添加到字典dict中</span></span><br><span class="line">        self.__dict__.update(adapter_method)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self.obj)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    objects = [Computer(<span class="string">'Asus'</span>)]</span><br><span class="line">    synth = Synthesizer(<span class="string">'moog'</span>)</span><br><span class="line">    objects.append(Adapter(synth, dict(execute = synth.play)))</span><br><span class="line">    human = Human(<span class="string">'Bob'</span>)</span><br><span class="line">    objects.append(Adapter(human, dict(execute = human.speak)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> objects:</span><br><span class="line">        print(<span class="string">'&#123;&#125; &#123;&#125;'</span>.format(str(i), i.execute()))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="修饰器模式"><a href="#修饰器模式" class="headerlink" title="修饰器模式"></a>修饰器模式</h2><blockquote>
+<p>修饰器模式以动态的方式给对象添加额外的功能。</p>
+</blockquote>
+<p>Python中的修饰器可以帮助实现修饰器模式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">memoize</span><span class="params">(fn)</span>:</span></span><br><span class="line">    known = dict()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @functools.wraps(fn)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">memoizer</span><span class="params">(*args)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> args <span class="keyword">not</span> <span class="keyword">in</span> known:</span><br><span class="line">            known[args] = fn(*args)</span><br><span class="line">        <span class="keyword">return</span> known[args]</span><br><span class="line">    <span class="keyword">return</span> memoizer</span><br><span class="line"></span><br><span class="line"><span class="meta">@memoize</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nsum</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span>(n &gt;= <span class="number">0</span>), <span class="string">'n must be &gt;= 0'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">else</span> n + nsum(n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@memoize</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span>(n &gt;= <span class="number">0</span>), <span class="string">'n must be &gt;= 0'</span></span><br><span class="line">    <span class="keyword">return</span> n <span class="keyword">if</span> n <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>) <span class="keyword">else</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">from</span> timeit <span class="keyword">import</span> Timer</span><br><span class="line">    measure = [&#123;<span class="string">'exec'</span>:<span class="string">'fibonacci(100)'</span>, <span class="string">'import'</span>:<span class="string">'fibonacci'</span>, <span class="string">'func'</span>:fibonacci&#125;,</span><br><span class="line">               &#123;<span class="string">'exec'</span>:<span class="string">'nsum(200)'</span>, <span class="string">'import'</span>:<span class="string">'nsum'</span>, <span class="string">'func'</span>:nsum&#125;]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> measure:</span><br><span class="line">        t = Timer(<span class="string">'&#123;&#125;'</span>.format(m[<span class="string">'exec'</span>]), <span class="string">'from __main__ import &#123;&#125;'</span>.format(m[<span class="string">'import'</span>]))</span><br><span class="line">        print(<span class="string">'name: &#123;&#125;, doc: &#123;&#125;, executing: &#123;&#125;, time:&#123;&#125;'</span>.format(m[<span class="string">'func'</span>].__name__, m[<span class="string">'func'</span>].__doc__,</span><br><span class="line">                                                                 m[<span class="string">'exec'</span>], t.timeit()))</span><br></pre></td></tr></table></figure></p>
+<h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><blockquote>
+<p>在客户端代码想要使用一个复杂系统但又不关心系统复杂性之时，这种模式是为复杂系统提供一个简单接口的理想方式。</p>
+</blockquote>
+<p>示例代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">State = Enum(<span class="string">'State'</span>, <span class="string">'new running sleeping restart zombie'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Process</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">File</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">boot</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kill</span><span class="params">(self, restart = True)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileServer</span><span class="params">(Server)</span>:</span></span><br><span class="line">    <span class="string">'''初始化文件服务进程要求的操作'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.name = <span class="string">'FileServer'</span></span><br><span class="line">        self.state = State.new</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">boot</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''启动文件系统服务要求的操作'''</span></span><br><span class="line">        print(<span class="string">'booting the &#123;&#125;'</span>.format(self))</span><br><span class="line">        self.state = State.running</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kill</span><span class="params">(self, restart = True)</span>:</span></span><br><span class="line">        <span class="string">'''终止文件服务要求的操作'''</span></span><br><span class="line">        print(<span class="string">'killing the &#123;&#125;'</span>.format(self))</span><br><span class="line">        self.state = State.restart <span class="keyword">if</span> restart <span class="keyword">else</span> State.zombie</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_file</span><span class="params">(self, user, name, permissions)</span>:</span></span><br><span class="line">        <span class="string">'''检查访问权限的有效性，用户的权限等'''</span></span><br><span class="line">        print(<span class="string">'trying to create the file "&#123;&#125;" for user "&#123;&#125;" with permissions &#123;&#125;'</span>.format(</span><br><span class="line">            name, user, permissions</span><br><span class="line">        ))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProcessServer</span><span class="params">(Server)</span>:</span></span><br><span class="line">    <span class="string">'''初始化服务进程要求的操作'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super().__init__()</span><br><span class="line">        self.name = <span class="string">'ProcessServer'</span></span><br><span class="line">        self.state = State.new</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">boot</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''启动进程服务要求的操作'''</span></span><br><span class="line">        print(<span class="string">'booting the &#123;&#125;'</span>.format(self))</span><br><span class="line">        self.state = State.running</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kill</span><span class="params">(self, restart = True)</span>:</span></span><br><span class="line">        <span class="string">'''终止进程服务要求的操作'''</span></span><br><span class="line">        print(<span class="string">'killing the &#123;&#125;'</span>.format(self))</span><br><span class="line">        self.state = State.restart <span class="keyword">if</span> restart <span class="keyword">else</span> State.zombie</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_file</span><span class="params">(self, user, name)</span>:</span></span><br><span class="line">        <span class="string">'''检查用户权限和生成PID等'''</span></span><br><span class="line">        print(<span class="string">'trying to create the process "&#123;&#125;" for user "&#123;&#125;"'</span>.format(name, user))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WindowServer</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NetworkServer</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperatingSystem</span>:</span></span><br><span class="line">    <span class="string">'''外观'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.fs = FileServer()</span><br><span class="line">        self.ps = ProcessServer()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">        [i.boot() <span class="keyword">for</span> i <span class="keyword">in</span> (self.fs, self.ps)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_file</span><span class="params">(self, user, name, permissions)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.fs.create_file(user, name, permissions)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_process</span><span class="params">(self, user, name)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.ps.create_file(user, name)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    os = OperatingSystem()</span><br><span class="line">    os.start()</span><br><span class="line">    os.create_file(<span class="string">'foo'</span>, <span class="string">'hello'</span>, <span class="string">'-rw-r-r'</span>)</span><br><span class="line">    os.create_process(<span class="string">'bar'</span>, <span class="string">'ls /tmp'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><blockquote>
+<p>在我们想要优化内存使用提高应用性能之时，可以使用享元。</p>
+</blockquote>
+<p>一个享元（Flyweight）就是一个包含状态独立的不可变（又称固有的）数据的共享对象。<br>若要享元模式有效，需要满足GoF的《设计模式》一书中的罗列的以下条件：</p>
+<ul>
+<li>应用需要使用大量的对象。</li>
+<li>对象太多，存储/渲染它们的代价太大。</li>
+<li>对象ID对于应用不重要。对象共享会造成ID比较的失败，所以不能依赖对象ID。</li>
+</ul>
+<p>享元模式示例代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TreeType = Enum(<span class="string">'TreeType'</span>, <span class="string">'apple_tree cherry_tree peach_tree'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span>:</span></span><br><span class="line">    pool = dict()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, tree_type)</span>:</span></span><br><span class="line">        obj = cls.pool.get(tree_type, <span class="keyword">None</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> obj:</span><br><span class="line">            obj = object.__new__(cls)</span><br><span class="line">            cls.pool[tree_type] = obj</span><br><span class="line">            obj.tree_type = tree_type</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">render</span><span class="params">(self, age, x, y)</span>:</span></span><br><span class="line">        print(<span class="string">'render a tree of type &#123;&#125; and age &#123;&#125; at (&#123;&#125;, &#123;&#125;)'</span>.format(self.tree_type, age , x, y))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    rnd = random.Random()</span><br><span class="line">    age_min, age_max = <span class="number">1</span>, <span class="number">30</span></span><br><span class="line">    min_point, max_point = <span class="number">0</span>, <span class="number">100</span></span><br><span class="line">    tree_counter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        t1 = Tree(TreeType.apple_tree)</span><br><span class="line">        t1.render(rnd.randint(age_min, age_max),</span><br><span class="line">                  rnd.randint(min_point, max_point),</span><br><span class="line">                  rnd.randint(min_point, max_point))</span><br><span class="line">        tree_counter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">        t2 = Tree(TreeType.cherry_tree)</span><br><span class="line">        t2.render(rnd.randint(age_min, age_max),</span><br><span class="line">                  rnd.randint(min_point, max_point),</span><br><span class="line">                  rnd.randint(min_point, max_point))</span><br><span class="line">        tree_counter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        t3 = Tree(TreeType.peach_tree)</span><br><span class="line">        t3.render(rnd.randint(age_min, age_max),</span><br><span class="line">                  rnd.randint(min_point, max_point),</span><br><span class="line">                  rnd.randint(min_point, max_point))</span><br><span class="line">        tree_counter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'trees rendered: &#123;&#125;'</span>.format(tree_counter))</span><br><span class="line">    print(<span class="string">'trees actually created: &#123;&#125;'</span>.format(len(Tree.pool)))</span><br><span class="line"></span><br><span class="line">    t4 = Tree(TreeType.cherry_tree)</span><br><span class="line">    t5 = Tree(TreeType.cherry_tree)</span><br><span class="line">    t6 = Tree(TreeType.apple_tree)</span><br><span class="line">    print(<span class="string">'&#123;&#125; == &#123;&#125; ? &#123;&#125;'</span>.format(id(t4), id(t5), id(t4) == id(t5)))</span><br><span class="line">    print(<span class="string">'&#123;&#125; == &#123;&#125; ? &#123;&#125;'</span>.format(id(t5), id(t6), id(t5) == id(t6)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h2><p>略.</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
+<p>在访问某个对象之前，执行一个或多个重要操作。</p>
+</blockquote>
+<p>代理模式的四中类型:</p>
+<ul>
+<li>远程代理:实际存在于不同地址空间（例如，某个网络服务器）的对象在本地的代理者。</li>
+<li>虚拟代理:用于懒初始化，将一个大计算量对象的创建延迟到真正需要的时候进行。</li>
+<li>保护防护代理:控制对敏感对象的访问。</li>
+<li>智能(引用代理):在对象被访问时执行额外的动作。此类代理的例子包括引用计数和线程安全检查。</li>
+</ul>
+<p>示例代码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SensitiveInfo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.users = [<span class="string">'nick'</span>, <span class="string">'tom'</span>, <span class="string">'ben'</span>, <span class="string">'mike'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'There are &#123;&#125; users: &#123;&#125;'</span>.format(len(self.users), <span class="string">','</span>.join(self.users)))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, user)</span>:</span></span><br><span class="line">        self.users.append(user)</span><br><span class="line">        print(<span class="string">'Add user &#123;&#125;'</span>.format(user))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Info</span>:</span></span><br><span class="line">    <span class="string">'''SensitiveInfo的保护代理'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.protected = SensitiveInfo()</span><br><span class="line">        self.secret = <span class="string">'0xdeadbeef'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.protected.read()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, user)</span>:</span></span><br><span class="line">        sec = input(<span class="string">'what is the secret?'</span>)</span><br><span class="line">        self.protected.add(user) <span class="keyword">if</span> sec == self.secret <span class="keyword">else</span> print(<span class="string">"That's Wrong!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    info = Info()</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        print(<span class="string">"1. read list |==| 2. add user |==| 3. quit"</span>)</span><br><span class="line">        key = input(<span class="string">'choose option: '</span>)</span><br><span class="line">        <span class="keyword">if</span> key == <span class="string">'1'</span>:</span><br><span class="line">            info.read()</span><br><span class="line">        <span class="keyword">elif</span> key == <span class="string">'2'</span>:</span><br><span class="line">            name = input(<span class="string">'choose username: '</span>)</span><br><span class="line">            info.add(name)</span><br><span class="line">        <span class="keyword">elif</span> key == <span class="string">'3'</span>:</span><br><span class="line">            exit()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'Unknown option: &#123;&#125;'</span>.format(key))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h1 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h1><h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>略.</p>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><blockquote>
+<p>什么情况使用命令模式？<br>在程序运行时，需要按照用户的意愿执行任何操作。这种情况适合使用命令行设计模式。</p>
+</blockquote>
+<p><strong>将“一个或一些”操作封装成一个对象，这个对象里包含这个操作的所有逻辑和方法，用户不需要知道命令执行细节，只是在需要的时候使用就可以。</strong></p>
+<p>命令设计模式可以提供很多好处:</p>
+<ul>
+<li>可以在任何时候执行一个命令，而不是在命令创建的时候。</li>
+<li>执行命令的客户端无需知道任何内部细节。</li>
+<li>可以对命令进行分组，按照一定顺序执行。</li>
+</ul>
+<p>命令行模式实现例子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">command_mode ： 命令行模式实现例子</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">使用命令行模式实现文件的打开、读取、删除等操作。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">verbose = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RenameFile</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, path_src, path_dest)</span>:</span></span><br><span class="line">        self.src, self.dest = path_src, path_dest</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> verbose:</span><br><span class="line">            print(<span class="string">"[renaming '&#123;&#125;' to '&#123;&#125;']"</span>.format(self.src, self.dest))</span><br><span class="line">        os.rename(self.src, self.dest)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">undo</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> verbose:</span><br><span class="line">            print(<span class="string">"[renaming '&#123;&#125;' back to '&#123;&#125;']"</span>.format(self.dest, self.src))</span><br><span class="line">        os.rename(self.dest, self.src)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateFile</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, path, txt=<span class="string">"Hello World\n"</span>)</span>:</span></span><br><span class="line">        self.path, self.txt = path, txt</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> verbose:</span><br><span class="line">            print(<span class="string">"[creating file '&#123;&#125;']"</span>.format(self.path))</span><br><span class="line">        <span class="keyword">with</span> open(self.path, mode=<span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> out_file:</span><br><span class="line">            out_file.write(self.txt)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">undo</span><span class="params">(self)</span>:</span></span><br><span class="line">        delete_file(self.path)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReadFile</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, path)</span>:</span></span><br><span class="line">        self.path = path</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> verbose:</span><br><span class="line">            print(<span class="string">"[reading file '&#123;&#125;']"</span>.format(self.path))</span><br><span class="line">        <span class="keyword">with</span> open(self.path, mode=<span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> in_file:</span><br><span class="line">            print(in_file.read(), end=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_file</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> verbose:</span><br><span class="line">        print(<span class="string">"[deleting file '&#123;&#125;']"</span>.format(path))</span><br><span class="line">    os.remove(path)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    orig_name, new_name = <span class="string">'file1'</span>, <span class="string">'file2'</span></span><br><span class="line"></span><br><span class="line">    commands = []</span><br><span class="line">    <span class="keyword">for</span> cmd <span class="keyword">in</span> CreateFile(orig_name), ReadFile(orig_name), RenameFile(orig_name, new_name):</span><br><span class="line">        commands.append(cmd)</span><br><span class="line">    [c.execute() <span class="keyword">for</span> c <span class="keyword">in</span> commands]</span><br><span class="line">    answer = input(<span class="string">'reverse the execute command? [y/n] '</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> answer <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">'yY'</span>:</span><br><span class="line">        print(<span class="string">"the result is &#123;&#125;"</span>.format(new_name))</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> reversed(commands):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            c.undo()</span><br><span class="line">        <span class="keyword">except</span> AttributeError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><blockquote>
+<p>解释器模式用于为高级用户和领域专家提供一个类编程的框架，但没有暴露出编程语言那样的复杂性。</p>
+</blockquote>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><blockquote>
+<p>观察者模式描述单个对象（发布者，又称为主持者或可观察者）与一个或多个对象（订阅者，又称为观察者）之间的发布—订阅关系。事件驱动系统是另一个可以使用（通常也会使用）观察者模式的例子。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Publisher</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.observers = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, observe)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> observe <span class="keyword">in</span> self.observers:</span><br><span class="line">            self.observers.append(observe)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'Failed add &#123;&#125;'</span>.format(observe))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, observe)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.observers.remove(observe)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            print(<span class="string">'Failed remove &#123;&#125;'</span>.format(observe))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self)</span>:</span></span><br><span class="line">        [o.notify(self) <span class="keyword">for</span> o <span class="keyword">in</span> self.observers]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DefaultFormatter</span><span class="params">(Publisher)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        Publisher.__init__(self)</span><br><span class="line">        self.name = name</span><br><span class="line">        self._data = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;&#125;: '&#123;&#125;' has data = &#123;&#125;"</span>.format(type(self).__name__, self.name, self._data)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">data</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._data</span><br><span class="line"></span><br><span class="line"><span class="meta">    @data.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">data</span><span class="params">(self, new_value)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self._data = int(new_value)</span><br><span class="line">        <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"Error: &#123;&#125;"</span>.format(e))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.notify()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HexFormatter</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self, publisher)</span>:</span></span><br><span class="line">        print(<span class="string">"&#123;&#125;: '&#123;&#125;' has now hex data = &#123;&#125;"</span>.format(type(self).__name__, publisher.name, hex(publisher.data)))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryFormatter</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self, publisher)</span>:</span></span><br><span class="line">        print(<span class="string">"&#123;&#125;: '&#123;&#125;' has now bin data = &#123;&#125;"</span>.format(type(self).__name__, publisher.name, bin(publisher.data)))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    df = DefaultFormatter(<span class="string">'test1'</span>)</span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    hf = HexFormatter()</span><br><span class="line">    df.add(hf)</span><br><span class="line">    df.data = <span class="number">3</span></span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    bf = BinaryFormatter()</span><br><span class="line">    df.add(bf)</span><br><span class="line">    df.data = <span class="number">21</span></span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    df.remove(hf)</span><br><span class="line">    df.data = <span class="number">40</span></span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    df.remove(hf)</span><br><span class="line">    df.add(bf)</span><br><span class="line"></span><br><span class="line">    df.data = <span class="string">'hello'</span></span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    df.data = <span class="number">15.8</span></span><br><span class="line">    print(df)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><p>状态机是一个抽象机器，有两个关键部分：状态和转换。</p>
+<ul>
+<li>状态:系统当前的（激活）状况。</li>
+<li>转换:指从一个状态切换到另一个状态,因某个事件或条件的触发而开始。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装python状态机模块</span></span><br><span class="line">pip3 install state_machine</span><br></pre></td></tr></table></figure>
+<p>例子程序:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> state_machine <span class="keyword">import</span> State, Event, acts_as_state_machine, after, before, InvalidStateTransition</span><br><span class="line"></span><br><span class="line"><span class="meta">@acts_as_state_machine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Process</span>:</span></span><br><span class="line">    created = State(initial=<span class="keyword">True</span>)</span><br><span class="line">    waiting = State()</span><br><span class="line">    running = State()</span><br><span class="line">    terminated = State()</span><br><span class="line">    blocked = State()</span><br><span class="line">    swapped_out_waiting = State()</span><br><span class="line">    swapped_out_blocked = State()</span><br><span class="line"></span><br><span class="line">    wait = Event(from_states=(created, running, blocked, swapped_out_waiting), to_state=waiting)</span><br><span class="line">    run = Event(from_states=waiting, to_state=running)</span><br><span class="line">    terminate = Event(from_states=running, to_state=terminated)</span><br><span class="line">    block = Event(from_states=(running, swapped_out_blocked), to_state=blocked)</span><br><span class="line">    swap_wait = Event(from_states=waiting, to_state=swapped_out_waiting)</span><br><span class="line">    swap_block = Event(from_states=blocked, to_state=swapped_out_blocked)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line"><span class="meta">    @after('wait')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wait_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; entered waiting mode'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @after('run')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is running'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @before('terminate')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">terminate_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; terminated'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @after('block')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">block_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is blocked'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @after('swap_wait')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swap_wait_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is swapped out and waiting'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @after('swap_block')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swap_block_info</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is swapped out and blocked'</span>.format(self.name))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transition</span><span class="params">(process, event, event_name)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        event()</span><br><span class="line">    <span class="keyword">except</span> InvalidStateTransition <span class="keyword">as</span> err:</span><br><span class="line">        print(<span class="string">'Error: transition of &#123;&#125; from &#123;&#125; to &#123;&#125; failed'</span>.format(process.name, process.current_state, event_name))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">state_info</span><span class="params">(process)</span>:</span></span><br><span class="line">    print(<span class="string">'state of &#123;&#125;: &#123;&#125;'</span>.format(process.name, process.current_state))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    RUNNING = <span class="string">'running'</span></span><br><span class="line">    WAITING = <span class="string">'waiting'</span></span><br><span class="line">    BLOCKED = <span class="string">'blocked'</span></span><br><span class="line">    TERMINATED = <span class="string">'terminated'</span></span><br><span class="line"></span><br><span class="line">    p1, p2 = Process(<span class="string">'process1'</span>), Process(<span class="string">'process2'</span>)</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    transition(p1, p1.wait, WAITING)</span><br><span class="line">    transition(p2, p2.terminate, TERMINATED)</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    transition(p1, p1.run, RUNNING)</span><br><span class="line">    transition(p2, p2.wait, WAITING)</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    transition(p2, p2.run, RUNNING)</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    [transition(p, p.block, BLOCKED) <span class="keyword">for</span> p <span class="keyword">in</span> (p1, p2)]</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    [transition(p, p.terminate, TERMINATED) <span class="keyword">for</span> p <span class="keyword">in</span> (p1, p2)]</span><br><span class="line">    [state_info(p) <span class="keyword">for</span> p <span class="keyword">in</span> [p1, p2]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><blockquote>
+<p>策略模式通常用在我们希望对同一个问题透明地使用多种方案时。</p>
+</blockquote>
+<p>策略模式（Strategy pattern）鼓励使用多种算法来解决一个问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">SLOW = <span class="number">3</span>    <span class="comment"># 单位为秒</span></span><br><span class="line">LIMIT = <span class="number">5</span>   <span class="comment"># 字符数</span></span><br><span class="line">WARNING = <span class="string">'too bad, you picked the slow algorithm :('</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pairs</span><span class="params">(seq)</span>:</span></span><br><span class="line">    n = len(seq)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">yield</span> seq[i], seq[(i + <span class="number">1</span>) % n]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">allUniqueSort</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(s) &gt; LIMIT:</span><br><span class="line">        print(WARNING)</span><br><span class="line">        time.sleep(SLOW)</span><br><span class="line">    strStr = sorted(s)</span><br><span class="line">    <span class="keyword">for</span> (c1, c2) <span class="keyword">in</span> pairs(strStr):</span><br><span class="line">        <span class="keyword">if</span> c1 == c2:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">allUniqueSet</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(s) &lt; LIMIT:</span><br><span class="line">        print(WARNING)</span><br><span class="line">        time.sleep(SLOW)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span> <span class="keyword">if</span> len(set(s)) == len(s) <span class="keyword">else</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">allUnique</span><span class="params">(s, strategy)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> strategy(s)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        word = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> word:</span><br><span class="line">            word = input(<span class="string">'Insert word (type quit to exit)&gt; '</span>)</span><br><span class="line">            <span class="keyword">if</span> word == <span class="string">'quit'</span>:</span><br><span class="line">                print(<span class="string">'bye'</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            strategy_picked = <span class="keyword">None</span></span><br><span class="line">            strategies = &#123;<span class="string">'1'</span>: allUniqueSet, <span class="string">'2'</span>: allUniqueSort&#125;</span><br><span class="line">            <span class="keyword">while</span> strategy_picked <span class="keyword">not</span> <span class="keyword">in</span> strategies.keys():</span><br><span class="line">                strategy_picked = input(<span class="string">'Choose strategy:[1] Use a set, [2] Sort and pair&gt; '</span>)</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    strategy = strategies[strategy_picked]</span><br><span class="line">                    print(<span class="string">'allUnique(&#123;&#125;): &#123;&#125;'</span>.format(word, allUnique(word, strategy)))</span><br><span class="line">                <span class="keyword">except</span> KeyError <span class="keyword">as</span> err:</span><br><span class="line">                    print(<span class="string">'Incorrect options: &#123;&#125;'</span>.format(strategy_picked))</span><br><span class="line">                print()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><p>在实现结构相近的算法时，可以使用模板模式来消除冗余代码。具体实现方式是使用动作/钩子方法/函数来完成代码重复的消除，它们是Python中的一<br>等公民。</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Tianer 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Tianer 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/30/how_to_read_a_book/" rel="next" title="《如何阅读一本书》笔记">
+                <i class="fa fa-chevron-left"></i> 《如何阅读一本书》笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars3.githubusercontent.com/u/7273262?s=460&v=4"
+                alt="Tianer" />
+            
+              <p class="site-author-name" itemprop="name">Tianer</p>
+              <p class="site-description motion-element" itemprop="description">记录点滴</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Tianer1123" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:844124497@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度" target="_blank">百度</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://theme-next.iissnan.com/" title="NexT" target="_blank">NexT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型模式"><span class="nav-number">1.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.1.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法："><span class="nav-number">1.1.1.</span> <span class="nav-text">工厂方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂"><span class="nav-number">1.1.2.</span> <span class="nav-text">抽象工厂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者模式"><span class="nav-number">1.2.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">1.3.</span> <span class="nav-text">原型模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构型模式"><span class="nav-number">2.</span> <span class="nav-text">结构型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">2.1.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修饰器模式"><span class="nav-number">2.2.</span> <span class="nav-text">修饰器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外观模式"><span class="nav-number">2.3.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式"><span class="nav-number">2.4.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC模式"><span class="nav-number">2.5.</span> <span class="nav-text">MVC模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">2.6.</span> <span class="nav-text">代理模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行为型模式"><span class="nav-number">3.</span> <span class="nav-text">行为型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#责任链模式"><span class="nav-number">3.1.</span> <span class="nav-text">责任链模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">3.2.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释器模式"><span class="nav-number">3.3.</span> <span class="nav-text">解释器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">3.4.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">3.5.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">3.6.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板模式"><span class="nav-number">3.7.</span> <span class="nav-text">模板模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tianer</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'kd1LVn1Gc6FAgik3BH651ar1-gzGzoHsz',
+        appKey: 'eUieE4S7nqQNDykChICPaaDW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
