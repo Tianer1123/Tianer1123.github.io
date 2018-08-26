@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tianer1123.github.io/"/>
-  <updated>2018-07-20T10:12:38.504Z</updated>
+  <updated>2018-08-26T08:50:27.748Z</updated>
   <id>https://tianer1123.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vimscript学习</title>
+    <link href="https://tianer1123.github.io/2018/08/26/vimscript%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://tianer1123.github.io/2018/08/26/vimscript学习/</id>
+    <published>2018-08-26T08:50:27.748Z</published>
+    <updated>2018-08-26T08:50:27.748Z</updated>
+    
+    <content type="html"><![CDATA[<p>学习《learn vimscript the hard way》笔记<br><a id="more"></a></p><p><img src="https://note.youdao.com/yws/public/resource/605cb1c2628014cc6b6440a51d855b04/xmlnote/WEBRESOURCE6f370ac20024085b3b858fe55343e453/3611" alt="vimscript"></p><h1 id="vim备忘录"><a href="#vim备忘录" class="headerlink" title="vim备忘录"></a>vim备忘录</h1><p><a href="http://people.csail.mit.edu/vgod/vim/vim-cheat-sheet-en.png" target="_blank" rel="noopener">转自：people.csail.mit.edu/vgod/vim/vim-cheat-sheet-en.png</a><br><img src="http://people.csail.mit.edu/vgod/vim/vim-cheat-sheet-en.png" alt="1"><br><a href="https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png" target="_blank" rel="noopener">转自：dn.shopify.com/s/files/1/0165/4168/files/preview.png</a><br><img src="https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png" alt="2"><br><a href="http://www.nathael.org/Data/vi-vim-cheat-sheet.svg" target="_blank" rel="noopener">转自：www.nathael.org/Data/vi-vim-cheat-sheet.svg</a><br><img src="http://www.nathael.org/Data/vi-vim-cheat-sheet.svg" alt="3"><br><a href="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png" target="_blank" rel="noopener">转自：michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png</a><br><img src="http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png" alt="4"><br><a href="http://www.rosipov.com/images/posts/vim-movement-commands-cheatsheet.png" target="_blank" rel="noopener">转自：www.rosipov.com/images/posts/vim-movement-commands-cheatsheet.png</a><br><img src="http://www.rosipov.com/images/posts/vim-movement-commands-cheatsheet.png" alt="5"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;学习《learn vimscript the hard way》笔记&lt;br&gt;
+    
+    </summary>
+    
+      <category term="vim" scheme="https://tianer1123.github.io/categories/vim/"/>
+    
+    
+      <category term="vim vimscript" scheme="https://tianer1123.github.io/tags/vim-vimscript/"/>
+    
+  </entry>
   
   <entry>
     <title>python面向对象和设计模式</title>
